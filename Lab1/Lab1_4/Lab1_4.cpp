@@ -14,6 +14,6 @@ int main()
 
 
 		x = x + y;
-		y = x - y; // y = 1 
-		x -= y; // x = 2
+		y = x - y; // y = 2 
+		x -= y; // x = 1
 }
