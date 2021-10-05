@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <windows.h>
 #include <stdio.h>
-#pragma execution_character_set("utf-8")
+setlocale(LC_ALL, "");
 
 
 int main(void) {
