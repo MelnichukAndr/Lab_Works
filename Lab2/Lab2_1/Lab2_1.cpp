@@ -4,8 +4,8 @@
 
 
 int main(void) {
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+	/*SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);*/
 	char name1[9], name2[11], name3[6];
 	char sc1, sc2, sc3;
 	unsigned short cnt1, cnt2, cnt3;
@@ -26,9 +26,9 @@ int main(void) {
 	printf("|             |     |                |            |\n");
 	printf("|-------------|-----|----------------|------------|\n");
 	/* вывод строк фактических данных */
-	printf("| %11s | %c   | %3d            | %-5.1lf      |\n", name1, sc1, cnt1, sq1);
-	printf("| %11s | %c   | %3d            | %-5.3lf      |\n", name2, sc2, cnt2, sq2);
-	printf("| %11s | %c   | %3d            | %-5.2lf      |\n", name3, sc3, cnt3, sq3);
+	printf("| %11s | %c   | %3d            | %-3.1lf      |\n", name1, sc1, cnt1, sq1);
+	printf("| %11s | %c   | %3d            | %-.3lf      |\n", name2, sc2, cnt2, sq2);
+	printf("| %11s | %c   | %3d            | %-.2lf      |\n", name3, sc3, cnt3, sq3);
 	/* вывод примечаний */
 	printf("|-------------------------------------------------|\n");
 	printf("|  Примечание: М - металлы,                       |\n");
