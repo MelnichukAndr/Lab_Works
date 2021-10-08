@@ -25,7 +25,7 @@ int main(void)
             printf("t2=%lg\n", t2);
         }
         else {
-            printf("EROR!");
+            printf("EROR!\n");
             printf("Введите значение x в пределах(-inf;4)\n");
         }
     

@@ -4,6 +4,10 @@
 
 
 int main(void) {
+
+	/*setlocale(LC_ALL, "ru");*/
+
+
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	char name1[9], name2[11], name3[6];
