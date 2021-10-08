@@ -1,9 +1,48 @@
-﻿// Lab3_1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-
-int main()
+#include <stdio.h>
+int main(void)
 {
-    printf("хай зяблс");
+    setlocale(LC_ALL, "ru");
+    double a = 5;
+    double t1, t2;
+    double x;
+    double ax, ab;
+    double b = 3;
+    
+        printf("\n");
+        printf("Ведите значение x (1;4) >\t");
+        scanf("%lf", &x);
+
+        ax = a * x;
+        ab = a * b;
+
+        if (x <=4) {
+            t1 = 1 / (6 * pow(a, 3)) * log((a + x) / (a - x)) + 1 / (2 * pow(a, 3));
+            printf("t1=%lg\n", t1);
+            
+            t2 = (1 / ab) * log(tan(ax + b) / tan(ax - b));
+            printf("t2=%lg\n", t2);
+        }
+        else {
+            printf("EROR!");
+            printf("Введите значение x в пределах(-inf;4)\n");
+        }
+    
+   
+        
+
+        /*t1 = 1 / (6 * pow(a, 3)) * log((a + x) / (a - x)) + 1 / (2 * pow(a, 3));
+        printf("t1=%lg\n", t1);*/
+       /* if (x <= 4) {
+            
+        }
+        else {
+            printf("Введите значение x в пределах(-inf;4)\n");
+        }
+    */
+    
+
+   
+        
 }
