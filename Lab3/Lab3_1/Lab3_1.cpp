@@ -26,7 +26,7 @@ int main(void)
         }
         else {
             printf("EROR!\n");
-            printf("Введите значение x в пределах(-inf;4)\n");
+            printf("Введите значение x в пределах(1;4)\n");
         }
     
    
