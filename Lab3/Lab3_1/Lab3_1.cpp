@@ -19,7 +19,7 @@ int main(void)
         ax = a * x;
         ab = a * b;
 
-        if (x <= 4 & b >= 3) {
+        if (x <= 4 & b >= 5) {
             t1 = 1 / (6 * pow(a, 3)) * log((a + x) / (a - x)) + 1 / (2 * pow(a, 3));
             printf("t1=%lg\n", t1);
 
