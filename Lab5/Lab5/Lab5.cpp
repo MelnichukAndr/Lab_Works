@@ -1,5 +1,6 @@
 ﻿#include <stdio.h>
 #include <iostream>
+#include <conio.h>
 #define _CRT_SECURE_NO_WARNINGS
 
 
@@ -24,6 +25,6 @@ int main()
     else
         printf("Точка не попадает в область\n");
 
-    
+    _getch();
 }
 

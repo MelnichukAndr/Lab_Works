@@ -8,16 +8,18 @@ int main(void)
     double t1, t2;
     double x;
     double ax, ab;
-    double b = 3;
+    double b;
     
         printf("\n");
         printf("Ведите значение x (1;4) >\t");
-        scanf("%lf", &x);
+        scanf("%lf" , &x);
+        printf("Введите значение b (3;10) >\t");
+        scanf("%lf", &b);
 
         ax = a * x;
         ab = a * b;
 
-        if (x <=4) {
+        if (x <=4 & b>=3) {
             t1 = 1 / (6 * pow(a, 3)) * log((a + x) / (a - x)) + 1 / (2 * pow(a, 3));
             printf("t1=%lg\n", t1);
             
