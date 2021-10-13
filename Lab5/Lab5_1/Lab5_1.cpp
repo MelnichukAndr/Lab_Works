@@ -14,10 +14,10 @@ int main() {
 	scanf("%d", &grib);
 
 		if ((grib % 100) >= 11 && (grib % 100) <= 19)
-				cout << grib << " грибов";
+			cout << grib << " грибов";
 
-			else if (grib % 10 >= 2 && grib % 10 <= 4)
-				cout << grib << " гриба";
+		    else if (grib % 10 >= 2 && grib % 10 <= 4)
+			cout << grib << " гриба";
 
 		    else if (grib % 10 == 1)
 		        cout << grib << " гриб";
