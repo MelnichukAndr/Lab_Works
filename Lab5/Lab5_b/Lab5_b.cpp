@@ -8,7 +8,7 @@ using namespace std;
 int main() {
 	setlocale(LC_ALL, "RUS");
 
-	int grib(0);
+	int grib;
 	while (1) {
 		system("cls");
 		printf("\t***Склонение слова гриб в зависимости от числа***\n");
