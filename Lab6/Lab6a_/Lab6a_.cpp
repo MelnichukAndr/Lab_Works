@@ -3,8 +3,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "windows.h"
-
-#include<conio.h>
+#include <conio.h>
 
     int main()
     {
@@ -30,7 +29,7 @@
             else if
                 (guess >number)
             {
-                printf("Введите число меньше >\n");
+                printf("Введите число меньше \n");
             }
 
             else if (guess == number)
@@ -46,10 +45,6 @@
 
             }
 
-            /*tries++;
-            printf("tries=%d", tries);*/
         }
-
-
-        return 0;
+          return 0;
     }
