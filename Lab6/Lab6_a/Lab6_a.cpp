@@ -16,7 +16,7 @@ int main()
     while (true)
     {
         tries += 1;
-        scanf("%d", &guess);
+        scanf_s("%d", &guess);
 
         if (guess < 0)
         {
