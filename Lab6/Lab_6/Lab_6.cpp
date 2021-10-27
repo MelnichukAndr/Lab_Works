@@ -1,6 +1,7 @@
 ﻿#include <stdio.h>
 #include <math.h>
 #include <iostream>
+
 int main(void) {
     setlocale(LC_ALL, "RUS");
     long n;
@@ -16,7 +17,7 @@ int main(void) {
         dbln = n;
 
         an = k1 * 1 / (2 * (n + 1));
-
+       
         if (fabs(an) >= eps)
 
             sum += an;
@@ -30,5 +31,4 @@ int main(void) {
     printf("Полная сумма ряда = %10.7lf\n", sum);
     return 0;
 }
-
 
