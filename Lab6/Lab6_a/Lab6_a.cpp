@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
     srand(time(0));
-
+    setlocale(LC_ALL, "RUS");
     int number = rand() % 100;
     int guess;
     int tries = 0;
@@ -18,13 +18,13 @@ int main()
         tries += 1;
         scanf_s("%d", &guess);
 
-        if (guess < 0)
+        if (guess < number)
         {
             printf("Введите число больше\n");
         }
 
         else if
-            (guess > 100)
+            (guess > number)
         {
             printf("Введите число меньше >\n");
         }

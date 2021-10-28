@@ -12,6 +12,7 @@ int main(void) {
     double k1 = 1;
 
 
+
     for (n = 0; ; n++, k1 = -k1) {
 
         dbln = n;
