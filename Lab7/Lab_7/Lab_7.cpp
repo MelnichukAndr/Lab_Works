@@ -25,7 +25,7 @@ int main(void) {
           
             printf("| %5.2lf | %10.7lf |", x + n * 4, y);
             
-            h = y * 8 + 0.8;
+            h = y * 10 + 0.8;
             
             if (y * 10  - h  > 0.5) h++;
             
