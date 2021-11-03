@@ -31,8 +31,9 @@ int main()
 
         else if (guess == number)
         {
-            printf("Вы ввели правильное число! >\n");
-            printf("Попыток=%d\n", tries);
+            printf("Вы ввели правильное число! \n");
+            printf("Попыток = %d\n", tries);
+           
         }
 
         else
