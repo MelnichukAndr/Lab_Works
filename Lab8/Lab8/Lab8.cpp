@@ -20,10 +20,14 @@
             printf("\n");
 
             for (i = 0; i < 200; i++) {
+
                 if (Ar[i] >= 0) k++;
+
                 else if (Ar[i] < 0) k = 0;
+
                 if (k > 7) j++;
             }
+
             printf("Count of positive sequences (i > 7) = %d", j);
             
             getchar();
