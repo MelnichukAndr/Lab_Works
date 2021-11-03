@@ -1,5 +1,4 @@
-﻿// Lab8.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿
 
 #include <iostream>
 #define _CRT_SECURE_NO_WARNINGS
@@ -25,7 +24,7 @@
                 else if (Ar[i] < 0) k = 0;
                 if (k > 7) j++;
             }
-            printf("Count of sequences = %d", j);
+            printf("Count of positive sequences (i > 7) = %d", j);
             
             getchar();
             system("cls");
