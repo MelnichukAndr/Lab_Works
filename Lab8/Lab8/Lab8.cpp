@@ -1,9 +1,6 @@
 ﻿
-
 #include <iostream>
 #define _CRT_SECURE_NO_WARNINGS
-
-
     int Ar[200];
     int main(void) {
 
