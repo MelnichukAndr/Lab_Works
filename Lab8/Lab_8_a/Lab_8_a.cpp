@@ -25,7 +25,7 @@ int main() {
                     if (places[i] == 0)
                     {
                         places[i] = 1;
-                        cout << "Номер вашего места: " << i + 1 << endl;
+                        cout << "Номер вашего места: " << i + 1 << endl << endl;
                         k++;
                         break;
                     }
