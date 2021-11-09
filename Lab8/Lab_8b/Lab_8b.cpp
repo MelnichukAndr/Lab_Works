@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    
+
     int arr_size;
     cout << "Put the count of elements in array" << endl;
     cin >> arr_size;
@@ -15,11 +15,11 @@ int main() {
     for (int i = 0; i < arr_size; i++)
     {
         arr[i] = i + 1;
-      
+
         cout << arr[i] << setw(3);
     }
-    
-        cout << endl << endl;
+
+    cout << endl << endl;
 
     while (true) {
 
@@ -30,17 +30,17 @@ int main() {
 
         cin >> answer;
 
-       if(answer == 0)  {
+        if (answer == 0) {
 
-           cout << "\nPush any key to exit...." << endl << endl;
-             break;
-         }
+            cout << "\nPush any key to exit...." << endl << endl;
+            break;
+        }
 
         int new_arr, new_el, new_size;
         int answer_add, amount_el_add;
         int el_add = 0;
         if (answer == 1) {
-            
+
             cout << "Put the element which you wanna add" << endl;
             cin >> answer_add;
 
@@ -81,7 +81,7 @@ int main() {
             for (int new_i = 0; new_i < arr_size; new_i++)
             {
                 cout << setw(3) << arr[new_i];
-              
+
             }
 
             cout << endl << endl;
@@ -119,7 +119,7 @@ int main() {
                     {
                         if (arr[i] != 0)
                         {
-                            cout << arr[i] <<setw(3);
+                            cout << arr[i] << setw(3);
                         }
                     }
                     cout << "\n\n";
