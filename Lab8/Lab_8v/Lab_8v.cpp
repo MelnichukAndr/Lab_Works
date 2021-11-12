@@ -21,7 +21,7 @@
         cout << "Enter number" << endl;
         cin >> number;
         k = number;
-        if (number < 2147483647) {
+        while (number < 2147483647) {
            
 
 
@@ -38,7 +38,7 @@
                 }
 
 
-                /* int n = 123;*/
+
                 string s = to_string(k);
                 string s_reverse(s);
                 reverse(s_reverse.begin(), s_reverse.end());
@@ -48,7 +48,7 @@
                 cout << "Sum = " << sum << endl;
                 cout << "Count of digits = " << count_of_digits << endl;
                 cout << "Reverse = " << s_reverse << endl;
-                /*  system("pause");*/
+                
                 return 0;
             }
         
