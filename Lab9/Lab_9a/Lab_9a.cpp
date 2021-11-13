@@ -73,21 +73,6 @@ int main()
 		cout << setw(w) << Matrix[i][col - 1] << endl;;
 	}
 	cout << endl;
-
-		
-
- 
-
-
-
-
-
-		
-		
-
-
-
-	
 }
 
 
