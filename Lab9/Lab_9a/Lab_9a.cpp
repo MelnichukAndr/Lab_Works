@@ -137,7 +137,7 @@ int main()
 				Matrix[0][j] = Matrix[min_col][j];
 				Matrix[min_col][j] = temp;*/
 
-				swap(Matrix[0][j], Matrix[min_col][j]);
+				swap(Matrix[string-1][j], Matrix[min_col][j]);
 			}
 			cout << endl;
 			cout << "Перераспределенная матрица" << endl;
