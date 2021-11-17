@@ -60,6 +60,6 @@ int main()
 
 
 
-    cout << "Enter number in the range of values for int type" << endl;;
+    cout << "Enter number in the range of values for int type" << endl;
 }
 
