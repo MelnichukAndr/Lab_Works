@@ -10,7 +10,6 @@ int main()
 	const int N = 100, M = 100;
 	int Matrix[N][M];
 	int Matrix_2[N][M];
-
 	int string, col, string_2, col_2;
 	int w = 4;
 
