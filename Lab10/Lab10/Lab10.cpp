@@ -57,6 +57,7 @@ int main()
 	int arr[SIZE];
 	int row;
 	int result = 0;
+
 	cout << "Введите кол-во елементов кратное самому себе" << endl;
 	cin >> row;
 
