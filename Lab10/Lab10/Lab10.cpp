@@ -21,9 +21,8 @@ void fun(int arr[], const int size, int row, int *result)
 		}
 	}
 
-
-
 	cout << endl << "Второй массив" << endl;
+
 	for (int i = 0; i < length; i++)
 	{
 		for (int j = 0; j < length; j++)
@@ -34,9 +33,7 @@ void fun(int arr[], const int size, int row, int *result)
 		cout << endl;
 	}
 
-
-
-	 int sum = 0;
+	int sum = 0;
 	for (int j = 0; j < length; j++) 
 	{
 			int min = arr2[0][j];
@@ -48,13 +45,10 @@ void fun(int arr[], const int size, int row, int *result)
 			
 		}
 		cout << "Столбец " << j + 1 << ": минимальный элемент -> " << min << endl;
+
 		sum += min;
-		
 	}
-	*result = sum / length;
-	/*cout << endl << "Cреднее значение из минимальных значений столбцов матрицы :" << result;*/
-	
-	
+	*result = sum / length; //разименование
 }
 
 int main()
@@ -72,7 +66,6 @@ int main()
 		arr[i] = i +1;
 	}
 
-	
 	for (int i = 0; i < row; i++)
 	{
 		cout << setw(4) << arr[i];
@@ -82,14 +75,6 @@ int main()
 	fun(arr, SIZE, row, &result);
 
 	cout << endl << "Cреднее значение из минимальных значений столбцов матрицы :"<<result << endl;
-
-
-
-
-
-
-
-
 
 	cout << endl << endl << endl;
 }
