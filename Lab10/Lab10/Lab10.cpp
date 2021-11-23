@@ -4,7 +4,7 @@
 #include <cstdlib>
 using namespace std;
 
-void fun(int arr[], const int size, int row, int *result)
+void fun(int arr[], const int size, int row, double *result)
 {
 	setlocale(0, "rus");
 	const int N = 100, M = 100;
@@ -32,7 +32,7 @@ void fun(int arr[], const int size, int row, int *result)
 		cout << endl;
 	}
 
-	int sum = 0;
+	double sum = 0;
 	for (int j = 0; j < length; j++) 
 	{
 			int min = arr2[0][j];
@@ -53,19 +53,23 @@ void fun(int arr[], const int size, int row, int *result)
 int main()
 {
 	setlocale(0, "rus");
+	srand(time(NULL));
 	int const SIZE = 100;
 	int arr[SIZE];
 	int row;
-	int result = 0;
+	double result = 0;
 
-	cout << "Введите кол-во елементов кратное самому себе" << endl;
-	cin >> row;
+	/*cout << "Введите размер массива" << endl;
+	cin << row;*/
+
+	row = rand() % 4 + 2;
+	row = row * row;
 
 	for (int i = 0; i < row; i++)
 	{
-		arr[i] = i +1;
+		arr[i] = rand() % 10;
 	}
-	cout << "Превый массив" << endl;;
+	cout << "Первый массив" << endl;;
 	for (int i = 0; i < row; i++)
 	{
 		cout << setw(4) << arr[i];
