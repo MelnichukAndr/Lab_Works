@@ -22,7 +22,6 @@ void fun(int arr[], const int size, int row, int *result)
 	}
 
 	cout << endl << "Второй массив" << endl;
-
 	for (int i = 0; i < length; i++)
 	{
 		for (int j = 0; j < length; j++)
@@ -65,12 +64,12 @@ int main()
 	{
 		arr[i] = i +1;
 	}
-
+	cout << "Превый массив" << endl;;
 	for (int i = 0; i < row; i++)
 	{
 		cout << setw(4) << arr[i];
 	}
-	cout << endl << result << endl;
+	/*cout << endl << result << endl;*/
 
 	fun(arr, SIZE, row, &result);
 
