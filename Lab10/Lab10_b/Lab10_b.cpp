@@ -1,9 +1,4 @@
-﻿/*ЛАБОРАТОРНАЯ РАБОТА № 10Б
-Для двумерного массива сделать:
-1. Функции заполнения и печати двумерного массива
-2. Функцию, которая принимает двумерный массив,
-и возвращает количество положительных элементов в одной любой указанной строке
-В функции main применить функцию 2 к каждой строке двумерного массива*/
+﻿
 #include <iostream>
 #include <time.h>
 #include <iomanip>
@@ -11,6 +6,7 @@
 using namespace std;
 void array_fill(int arr[100][100], int row, int col)
 {
+	srand(time(NULL));
 	for (size_t i = 0; i < row; i++)
 	{
 		for (size_t j= 0; j < col; j++)
@@ -37,27 +33,23 @@ void array_print(int arr[100][100], int row, int col)
 		cout << endl;
 	}
 }
-void array_sort(int arr[100][100], int row, int col, int k)
+int array_sort(int arr[100][100], int col, int k)
 {
+	
 	int w = 0;
-	for (int i = 0; i < row; i++, w++)
+	for (size_t i = 0; i < col; i++)
 	{
-		int k = 0;
-		
-		for (int j = 0; j < col; j++)
-		{
-			if (arr[i][j] >= 0)
+			if (arr[k][i] >= 0)
 			{
-				k++;
+				w++;
 			}
-		}
-		cout << "В  " << w + 1 << " строке " << k <<" положительных " << "элементов" << endl;
 	}
+	return w;
 }
 int main()
 {
 	setlocale(0, "rus");
-	int row, col, k = 0;
+	int row, col, k;
 	const int N = 100, M = 100;
 	int arr[N][M];
 
@@ -69,10 +61,10 @@ int main()
 	array_fill(arr, row, col);
 	array_print(arr, row, col);
 	cout << endl;
-	
-	//for (int i = 0; i < row; i++)
-	//{
-		array_sort(arr, row, col, k);
-		
-	//}
+	int result;
+	for (int i = 0; i < row; i++)
+	{
+		result = array_sort(arr, col, i);
+		cout << "В  " << i + 1 << " строке " << result << " положительных " << "элементов" << endl;
+	}
 }

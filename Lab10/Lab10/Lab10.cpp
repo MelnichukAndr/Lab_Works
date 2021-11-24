@@ -10,16 +10,15 @@ void fun(int arr[], const int size, int row, double *result)
 	const int N = 100, M = 100;
 	int arr2[N][M];
 	int length = sqrt(row);
-
 	for (int i = 0, k = 0; i < length; i++)
 	{
-		
 		for (int j = 0; j < length; j++)
 		{
 			arr2[i][j] = arr[k];
 			k++;
 		}
 	}
+
 
 	cout << endl << "Второй массив" << endl;
 	for (int i = 0; i < length; i++)
@@ -47,6 +46,7 @@ void fun(int arr[], const int size, int row, double *result)
 
 		sum += min;
 	}
+
 	*result = sum / length; //разименование
 }
 
@@ -69,7 +69,7 @@ int main()
 	{
 		arr[i] = rand() % 10;
 	}
-	cout << "Первый массив" << endl;;
+	cout << "Первый массив" << endl;
 	for (int i = 0; i < row; i++)
 	{
 		cout << setw(4) << arr[i];
@@ -77,9 +77,15 @@ int main()
 	/*cout << endl << result << endl;*/
 
 	fun(arr, SIZE, row, &result);
+	
 
 	cout << endl << "Cреднее значение из минимальных значений столбцов матрицы :"<<result << endl;
-
+	cout << endl;
+	cout << "Первый массив" << endl;
+	for (int i = 0; i < row; i++)
+	{
+		cout << setw(4) << arr[i];
+	}
 	cout << endl << endl << endl;
 }
 
