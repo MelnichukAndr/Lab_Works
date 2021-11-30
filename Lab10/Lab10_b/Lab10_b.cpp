@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <cstdlib>
 using namespace std;
-void array_fill(int arr[100][100], int row, int col)
+	void array_fill(int arr[100][100], int row, int col)
 {
 	srand(time(NULL));
 	for (size_t i = 0; i < row; i++)
@@ -64,7 +64,7 @@ int main()
 	int result;
 	for (int i = 0; i < row; i++)
 	{
-		result = array_sort(arr, col, i);
-		cout << "В  " << i + 1 << " строке " << result << " положительных " << "элементов" << endl;
+	
+		cout << "В  " << i + 1 << " строке " << array_sort(arr, col, i) << " положительных " << "элементов" << endl;
 	}
 }

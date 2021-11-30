@@ -4,22 +4,22 @@
 #include <cstdlib>
 using namespace std;
 
-char foo(int first, int second) 
+	char foo(int first, int second) 
 {
-	char sign;
+	//char sign;
 	if (first > second)
 	{
-		sign = '>';
+		return '>';
 	}
 	if (first < second)
 	{
-		sign = '<';
+		return '<';
 	}
 	if(first == second)
 	{
-		sign = '=';
+		return '=';
 	}
-	return sign;
+	//return sign;
 }
 
 int main() 
