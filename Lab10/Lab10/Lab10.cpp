@@ -1,5 +1,4 @@
-﻿
-#include <iostream>
+﻿#include <iostream>
 #include <time.h>
 #include <iomanip>
 #include <cstdlib>
@@ -35,17 +34,17 @@ double fun(int arr[], const int size, int row)
 	cout << endl;
 
 	//перевод в 1-мерный из 2-мерного
-	
-	for (int i = 0; i < length* length; i++)
+
+	for (int i = 0; i < length * length; i++)
 	{
-		for (int j = 0; j < length* length; j++)
+		for (int j = 0; j < length * length; j++)
 		{
-			arr[i * length + j] = arr2[i][j]+1;     //без указателя никак
+			arr[i * length + j] = arr2[i][j] + 1;
 		}
 		cout << setw(4) << arr[i];
 		//return arr;
 	}
-	
+
 	cout << endl;
 	//подсчет среднего значения
 	double result;
@@ -65,9 +64,9 @@ double fun(int arr[], const int size, int row)
 		sum += min;
 	}
 	result = sum / length;
-	
-	return result; 
-	
+
+	return result;
+
 }
 
 
@@ -93,7 +92,7 @@ int main()
 	{
 		cout << setw(4) << arr[i];
 	}
-	
+
 	cout << endl;
 	result = fun(arr, SIZE, row);
 
@@ -106,4 +105,3 @@ int main()
 	}
 	cout << endl << endl << endl;
 }
-
