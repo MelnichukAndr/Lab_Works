@@ -1,5 +1,4 @@
-﻿
-#include <iostream>
+﻿#include <iostream>
 #include <conio.h>
 #include <iomanip>
 #include <chrono>
@@ -7,12 +6,12 @@
 #define N 5//Элементов в массиве
 
 using namespace std;
-void first_sorting(int arr[], int n);
-void second_sorting(int arr[], int n);
-void ordered_array(int arr[], int n);
-void reverse_array(int arr[], int n);
-void disordered_array(int arr[], int n);
-void dur_array(double dur_arr[], int M);
+void first_sorting		(int arr[], int n);
+void second_sorting		(int arr[], int n);
+void ordered_array		(int arr[], int n);
+void reverse_array		(int arr[], int n);
+void disordered_array	(int arr[], int n);
+void dur_array			(double dur_arr[], int M);
 int main()
 {
 	int const M = 700; // Количество циклов
