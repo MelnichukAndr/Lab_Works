@@ -426,10 +426,10 @@ void dur_array(double dur_arr[], int M)
 		{
 			if (dur_arr[i] < dur_arr[j])
 			{
-				/*int temp = dur_arr[i];
+				int temp = dur_arr[i];
 				dur_arr[i] = dur_arr[j];
-				dur_arr[j] = temp;*/
-				swap(dur_arr[i], dur_arr[j]);
+				dur_arr[j] = temp;
+				//swap(dur_arr[i], dur_arr[j]);
 			}
 		}
 	}
