@@ -3,7 +3,7 @@
 #include <iomanip>
 #include <chrono>
 
-#define N 5//Элементов в массиве
+#define N 45//Элементов в массиве
 
 using namespace std;
 void first_sorting(int arr[], int n);
@@ -125,7 +125,7 @@ int main()
 	}
 	cout << endl;
 	disordered_array(disordered_arr, N);
-
+	 
 	//Подсчет времени
 	double dur_arr[M];
 	double aver_dur = 0;
@@ -141,6 +141,7 @@ int main()
 
 	for (int i = 0; i < M; i++)
 	{
+		ordered_array(arr, N);
 		auto start = std::chrono::high_resolution_clock::now();
 
 		first_sorting(arr, N);									//первая/вторая сортировка     (какой массив в качестве параметра/ N)
@@ -171,6 +172,7 @@ int main()
 
 	for (int i = 0; i < M; i++)
 	{
+		ordered_array(arr, N);
 		auto start = std::chrono::high_resolution_clock::now();
 
 		second_sorting(arr, N);									//первая/вторая сортировка     (какой массив в качестве параметра/ N)
@@ -206,6 +208,7 @@ int main()
 
 	for (int i = 0; i < M; i++)
 	{
+		reverse_array(reverse_arr, N);
 		auto start = std::chrono::high_resolution_clock::now();
 
 		first_sorting(reverse_arr, N);									//первая/вторая сортировка     (какой массив в качестве параметра/ N)
@@ -237,6 +240,7 @@ int main()
 
 	for (int i = 0; i < M; i++)
 	{
+		reverse_array(reverse_arr, N);
 		auto start = std::chrono::high_resolution_clock::now();
 
 		second_sorting(reverse_arr, N);									//первая/вторая сортировка     (какой массив в качестве параметра/ N)
@@ -278,6 +282,7 @@ int main()
 
 	for (int i = 0; i < M; i++)
 	{
+		disordered_array(disordered_arr, N);
 		auto start = std::chrono::high_resolution_clock::now();
 
 		first_sorting(disordered_arr, N);									//первая/вторая сортировка     (какой массив в качестве параметра/ N)
@@ -307,6 +312,7 @@ int main()
 
 	for (int i = 0; i < M; i++)
 	{
+		disordered_array(disordered_arr_2, N);
 		auto start = std::chrono::high_resolution_clock::now();
 
 		second_sorting(disordered_arr_2, N);									//первая/вторая сортировка     (какой массив в качестве параметра/ N)
@@ -351,7 +357,7 @@ void reverse_array(int arr[], int n)
 //Функция задающая неупорядоченый массив
 void disordered_array(int arr[], int n)
 {
-	srand(time(0));
+	//srand(time(0));
 	for (int i = 0; i < n; i++)
 	{
 		arr[i] = i + 1;
@@ -368,11 +374,14 @@ void first_sorting(int arr[], int n)
 {
 	for (int i = 0; i < n; i++)
 	{
-		for (int i1 = (i % 2) ? 0 : 1; i1 + 1 < n; i1 += 2) // (i % 2) ? 0 : 1 возвращает 1 если i четное, 0 - если i не четное
+		for (int i1 = (i % 2) ? 0 : 1; i1 + 1 < n; i1 += 2) // (i % 2) ? 0 : 1, возвращает 1 если i четное, 0 - если i не четное
 		{
 			if (arr[i1] > arr[i1 + 1])
 			{
-				swap(arr[i1], arr[i1 + 1]);
+				int temp = arr[i1];
+				arr[i1] = arr[i1+1];
+				arr[i1+1] = temp;
+				//swap(arr[i1], arr[i1 + 1]);
 			}
 		}
 	}
@@ -384,6 +393,7 @@ void second_sorting(int arr[], int n)
 	for (int i = n; i > 1; i--)
 	{
 		i_max = 0;
+		//Находим максимальный элемент и переворачиваем массив
 		for (int j = i - 1; j > 0; j--)
 		{
 			if (arr[j] > arr[i_max])
@@ -391,19 +401,19 @@ void second_sorting(int arr[], int n)
 				i_max = j;
 			}
 		}
-
+		//если предыдущий элемент равен текущему - пропускаем 
 		if (i_max == i - 1)
 		{
 			continue;
 		}
-
+		//переворот элементов массива от индекса j до индекса index.
 		int index = i;
 		for (int j = i_max; j < --index; j++)
 		{
-			//int temp = arr[j];
-			//arr[j] = arr[index];
-			//arr[index] = temp;
-			swap(arr[j], arr[index]);
+			int temp = arr[j];
+			arr[j] = arr[index];
+			arr[index] = temp;
+			//swap(arr[j], arr[index]);
 		}
 	}
 }
