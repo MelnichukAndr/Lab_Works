@@ -3,7 +3,7 @@
 #include <iomanip>
 #include <chrono>
 
-#define N 45//Элементов в массиве
+#define N 10//Элементов в массиве
 
 using namespace std;
 void first_sorting(int arr[], int n);
