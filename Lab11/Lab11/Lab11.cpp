@@ -4,26 +4,26 @@
 
 using namespace std;
 
-void foo(int i, int s, int arr[])
+void foo(int i, int arr[])
 {
 	static int j = 0;
 	if (i == 0)
 		cout << 0;
 	else
 	{
-		if (i / s > 0)
+		if (i / 8 > 0)
 		{
-			foo(i / s, s, arr);
+			foo(i / 8, arr);
 		}
-		arr[j] = i % s;
+		arr[j] = i % 8;
 		j++;
 	}
 }
 int main()
 {
 	setlocale(LC_ALL, "Russian");
-	int i = 0;
-	int k = 0;
+
+	int i;
 	int_fast64_t m = 0;
 	int stepen = 0;
 	int p = 0;
@@ -45,7 +45,7 @@ int main()
 		stepen++;
 	}
 
-	foo(i, 8, arr);
+	foo(i, arr);
 
 	for (int i = 0; i < stepen; i++)
 	{
