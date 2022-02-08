@@ -1,7 +1,6 @@
 ﻿#include <windows.h>
 #include <iostream>
 #include <string>
-#include<ctime>
 
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -19,35 +18,13 @@ arr[10];
 int input()
 {
     int n;
-        for (n = 0; n < 5; n++)
-        {
-            cout << n + 1 << ") " << "Введите: вещество, тип, влажность, коеффициент >" << endl;
-            cin >> arr[n].name >> arr[n].sc >> arr[n].cnt >> arr[n].sq;
-        }
+    for (n = 0; n < 5; n++)
+    {
+        cout << n + 1 << ") " << "Введите: вещество, тип, влажность, коеффициент >" << endl;
+        cin >> arr[n].name >> arr[n].sc >> arr[n].cnt >> arr[n].sq;
+    }
     return n;
 }
-
-//string rand_input()
-//{
-//    int n;
-//    srand(time(0));
-//    string name[5] = { "Аллюминий","Медь","Сталь","Олово","Бронза" };
-//    char sc[5] = { 'А','Б','В','Г','Д' };
-//    string cont[5] = { "0-10","0-100","0-50","0-20", "0-30" };
-//    double sq[5] = { 100.32, 323.65, 76.13, 654.09, 221.63 };
-//
-//    string random;
-//
-//    for (int i = 0; i < 5; i++)
-//    {
-//        random = name[rand() % 5];
-//    }
-//    arr[n].name = random;
-//
-//    return random;
-//
-//}
-//
 
 void print(int n)
 {
@@ -73,10 +50,9 @@ void print(int n)
 void sort(int n)
 {
     struct table x;
-    for (int i = 0; i < n - 1; i++) 
+    for (int i = 0; i < n - 1; i++)
     {
         int m = i;
-
         for (int j = i + 1; j < n; j++)
         {
             /* если текущий элемент > минимального, он становится минимальным */
@@ -110,20 +86,9 @@ int main()
     SetConsoleOutputCP(1251);
 
     int n;
-    bool answer;
-  // string random;
-  //  cout << "Как заполнять структуру?" << endl;
-  //  cout << "Случайно - 0" << endl << "Ввод вручную - 1" << endl;
-  //  cin >> answer;
 
-   // if (answer == true)
-        n = input();
-   // else
-   //     random =  rand_input();
-
-   // cout << random;
+    n = input();
     sort(n);
-
     print(n);
 
     return 0;
