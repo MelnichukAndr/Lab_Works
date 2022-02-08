@@ -22,45 +22,38 @@ void foo(int i, int arr[])
 int main()
 {
 	setlocale(LC_ALL, "Russian");
-	while(true)
+
+	int i = 0;
+	int_fast64_t  m = 0;
+	int stepen = 0;
+	int p = 0;
+	int arr[11];
+
+	cout << "Введите число в десятичной СС: ";
+	cin >> i;
+	
+	p = i;
+
+	if (i >= 32768)
 	{
-		int i = 0;
-		int_fast64_t m = 0;
-		int stepen = 0;
-		int p = 0;
-		int arr[12];
-
-		cout << "Введите число в десятичной СС: ";
-		cin >> i;
-		p = i;
-
-		if (i >= 32768)
-		{
-			stepen = 1;
-		}
-
-		while (p > 0)
-		{
-			p % 10;
-			p /= 10;
-			stepen++;
-		}
-
-		foo(i, arr);
-		for (int i = 0,j = 0; i < 12; i++,j++)
-		{
-			if (arr[i] >= 0)
-				arr[i] = arr[j + 1];
-		}
-		for (int i = 0; i < stepen; i++)
-		{
-			m += arr[i] * pow(10, stepen - 1 - i);
-		}
-		cout << "Число " << i << " в " << 8 << " CC:  " << m;
-
-		
-
-		cout << endl << endl;
-		system("pause");
+		stepen = 1;
 	}
+
+	while (p > 0)
+	{
+		p % 10;
+		p /= 10;
+		stepen++;
+	}
+
+	foo(i, arr);
+
+	for (int i = 0; i < stepen; i++)
+	{
+		m += arr[i] * pow(10, stepen - 1 - i);
+	}
+	cout << "Число " << i << " в " << 8 << " CC:  " << m;
+	cout << endl << endl;
+	system("pause");
 }
+
