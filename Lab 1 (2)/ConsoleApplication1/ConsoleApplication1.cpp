@@ -1,137 +1,165 @@
-﻿#include <stdio.h>
-#include <string.h>
+﻿#include <windows.h>
 #include <iostream>
-#include <windows.h>
+#include <string>
+#include <string.h>
+#include <ctime>
+#define _CRT_SECURE_NO_WARNINGS
 
 using namespace std;
-#define M 3	
 
-struct mon {
-	char name[15];
-	char sc;
-	float cnt;
-	int sq;
-}; /* îïðåäåëåíèå ìàññèâà ìîíàñòèðåé */
-/* Îïèñàíèå ñòðóêòóðû, êîòîðàÿ ïðåäñòàâëÿåò ìîíàñòûðü */
-void sort(mon mm[]) {
-
-	for (int i = 0; i < M; i++)
-	{
-		if (mm[i].sq != i + 1) {
-			if (mm[i].sq == 1) {
-				mm[10] = mm[0];
-				mm[0] = mm[i];
-				mm[i] = mm[10];
-			}
-		}
-		if (mm[i].sq == 2) {
-			mm[10] = mm[1];
-			mm[1] = mm[i];
-			mm[i] = mm[10];
-		}
-		if (mm[i].sq == 3) {
-			mm[10] = mm[2];
-			mm[2] = mm[i];
-			mm[i] = mm[10];
-		}
-
-	}
+struct table
+{
+    char name[12];
+    char sc;
+    char cnt[12];
+    float sq;
 }
-void print(mon mm[]) {
-	/* Âûâîä òàáëèöû */
-	struct mon x; /* ðàáî÷àÿ ïåðåìåííàÿ */
-	int n = M;    /* êîëè÷åñòâî ýëåìåíòîâ â ìàññèâå */
-	int i, j; /* òåêóùèå èíäåêñû â ìàññèâå */
-	int m;    /* èíäåêñ ìèíèìàëüíîãî ýëåìåíòà */
-	printf("-------------------------------------------------\n");
-	printf("|        Âåäîìîñòü ñïîðòèâíèõ ñîñòÿçàíèé |\n");
-	printf("|-----------------------------------------------|\n");
-	printf("|   Ôàìèëèÿ  |  Êîä  |Êîëè÷åñòâî  |Ìåñòî â Èòîãå|\n");
-	printf("|  ó÷àñòíèêà |Êîìàíäû|áàëîâ       |             |\n");
-	printf("|------------|-------|------------|-------------|\n");
-	/* âûâîä ñòðîê ôàêòè÷åñêèõ äàííûõ */
-	for (i = 0; i < n; i++)
-		printf("| %10s |   %c   |  %-9.1f | %11d |\n",
-			mm[i].name, mm[i].sc, mm[i].cnt, mm[i].sq);
-	printf("------------------------------------------------\n");
-	printf("| Ïðèìå÷àíèå: Ä - Äèíàìî, Ñ - Ñïàðòàê,          | \n");
-	printf("|   Ø -  Øàõòåð                                 | \n");
-	printf("------------------------------------------------\n");
+arr[10];
+
+void input(int N, table arr[])
+{
+    for (int i = 0; i < N; i++)
+    {
+        cout << i + 1 << ") " << "Введите: вещество, тип, влажность, коеффициент >" << endl;
+        cin >> arr[i].name >> arr[i].sc >> arr[i].cnt >> arr[i].sq;
+    }
 }
-void random(mon mm[]) {
-
-	for (int n = 0; n < M; n++) {
-		printf("%d. Ââåäèòå: ôàìèëèþ >",
-			n + 1);
-		scanf_s("%s", mm[n].name, sizeof(mm[n].name));
-
-
-
-	}
-	
-	char letters[3] = { 'Ø', 'Ñ' ,'Ä' };
-	for (int i = 0; i < 3; i++)
-	{
-		mm[i].cnt = rand() % 40 + (40 * (2 - i));
-		mm[i].sc = letters[i % 3];
-		mm[i].sq = i + 1;
-	}
-
-	mm[10] = mm[2];
-	mm[2] = mm[0];
-	mm[0] = mm[10];
+void random(int N, table arr[])
+{
+    srand(time(0));
+    char symbol[3] = { 'T','М','Д' };
+    string names[10] = { "Аллюминий", "Медь","Олово", "Сталь", "Чугун","Вольфрам","Железо","Золото","Композит","Бронза" };
+    string sign[10] = { "0-100","0-10","0-20","15-30","35-50","40-70","10-40","0-25","75-100","15-65" };
+    for (int i = 0; i < N; i++)
+    {
+        strcpy_s(arr[i].name, names[rand() % 10].c_str());
+        strcpy_s(arr[i].cnt, sign[rand() % 10].c_str());
+        arr[i].sc = symbol[rand() % 4 - 1];
+        arr[i].sq = (double)(rand()) / RAND_MAX * 100;
+    }
 }
 
-void put(mon mm[]) {
-	for (int n = 0; n < M; n++) {
-		printf("%d. Ââåäèòå: Ôàìèëèþ,  Êîä, Êîëè÷åñòâî, Ìåñòî â Èòîãå >",
-			n + 1);
-		scanf_s("%s", mm[n].name, sizeof(mm[n].name));
-		if (!strcmp(mm[n].name, "***")) break;
-		scanf_s("%s", &mm[n].sc, sizeof(mm[n].name));
-		scanf_s("%f", &mm[n].cnt);
-		/* Âíèìàíèå! Ìû îáõîäèì îøèáêó â ñèñòåìå ïðîãðàììèðîâàíèÿ */
-		scanf_s("%d", &mm[n].sq); //mm[n].sq = sqx;
-	}
+void print(int N, table arr[])
+{
+    cout << "---------------------------------------------------\n";
+    cout << "|   Коэффициенты теплопроводимости материаллов    |\n";
+    cout << "|-------------------------------------------------|\n";
+    cout << "| Вещество    | Тип | Влажность (%)  | Коэффициент|\n";
+    cout << "|             |     |                |            |\n";
+    cout << "|-------------|-----|----------------|------------|\n";
 
+    for (int i = 0; i < N; i++)
+    {
+        printf("| %-11s | %-3c | %-14s | %-10.3f |\n", arr[i].name, arr[i].sc, arr[i].cnt, arr[i].sq);
+    }
+    cout << "---------------------------------------------------\n";
+    cout << "|-------------------------------------------------|\n";
+    cout << "|  Примечание: М - металлы,                       |\n";
+    cout << "|              Т - термоизоляционные материалы,   |\n";
+    cout << "|              Д - другие материалы               |\n";
+    cout << "---------------------------------------------------\n";
 }
 
+void sort(int N, table arr[])
+{
+    struct table x;
+    for (int i = 0; i < N - 1; i++)
+    {
+        int m = i;
+        for (int j = i + 1; j < N; j++)
+        {
+            if (strcmp(arr[m].name, arr[j].name) > 0) m = j;
+        }
+        if (m > i)
+        {
+            strcpy_s(x.name, arr[i].name);
+            x.sc = arr[i].sc;
+            strcpy_s(x.cnt, arr[i].cnt);
+            x.sq = arr[i].sq;
+
+            strcpy_s(arr[i].name, arr[m].name);
+            arr[i].sc = arr[m].sc;
+            strcpy_s(arr[i].cnt, arr[m].cnt);
+            arr[i].sq = arr[m].sq;
 
 
-int main(void) {
-	srand(time(0));
-	//setlocale(LC_ALL, "ru");
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+            strcpy_s(arr[m].name, x.name);
+            arr[m].sc = x.sc;
+            strcpy_s(arr[m].cnt, x.cnt);
+            arr[m].sq = x.sq;
+        }
+    }
+}
 
-	float sqx;
-	int action = 0;
-	int n = 3;
-	mon mm[M];
+void print_menu() 
+{
+    system("cls");  // очищаем экран
+    printf("Что мы будем делать?\n");
+    printf("1. Заполнить структуру вручную\n");
+    printf("2. Заполнить структуру рандомно\n");
+    printf("3. Отсортировать структуру\n");
+    printf("4. Расспечатать структуру\n");
+    printf("5. Выход\n");
+    printf(">");
+}
 
+int get_variant() {
+    int variant;
+    cin >> variant;
+    if (variant < 1 || variant > 5)
+    {
+        cout << "Eror";
+        return 0;
+    }
+        
+    else
+    return variant;
+}
 
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
 
-	while (true) {
-		for (int i = 0; i < 1; i++)
-		{
-			cout << "1 – ñëó÷àéíûì, 2 - ââîä ñ ýêðàí, 3 – ñîðòèðîâêà, 4 – ïå÷àòü";
-			cin >> action;
+    int n;
+    bool answer;
+    int N;
+    int variant;
+    do
+    {
+        print_menu();
+        variant = get_variant();
+        switch (variant)
+        {
+        case 1:
+        {
+            cout << "Сколько строк заполнять? --> ";
+            cin >> N;
+            input(N, arr);
+        }break;
 
+        case 2:
+        {
+            cout << "Сколько строк заполнять? --> ";
+            cin >> N;
+            random(N, arr);
+        }break;
 
-			if (action == 1) {
-				random(mm);
-			}
-			else if (action == 2) {
-				put(mm);
-			}
-			else if (action == 3) {
-				sort(mm);
-			}
-			else if (action == 4) {
-				print(mm);
-			}
-		}
+        case 3:
+        {
+            sort(N, arr);
+        }break;
 
-	}
-	return 0;
+        case 4:
+        {
+            print(N, arr);
+        }break;
+        }
+        if (variant != 5)
+        {
+            system("pause");
+        }
+    } while (variant != 5);
+
+    return 0;
 }
