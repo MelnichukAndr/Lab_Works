@@ -1,8 +1,5 @@
 ﻿#include "fun.h"
 
-using namespace std;
-#define _CRT_SECURE_NO_WARNINGS
-
 table arr[10];
 
 void menu()
@@ -22,12 +19,12 @@ void menu()
             input(N, arr);
         }break;
 
-        case 2:
+        /*case 2:
         {
             cout << "Сколько строк заполнять? --> ";
             cin >> N;
             random(N, arr);
-        }break;
+        }break;*/
 
         case 3:
         {

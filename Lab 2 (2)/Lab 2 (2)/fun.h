@@ -7,12 +7,15 @@
 #include <ctime>
 #include "struct.h"
 
+#define _CRT_SECURE_NO_WARNINGS
+#define PRINT
+
 using namespace std;
 
  void input(int N, table[]);
- void random(int N, table []);
- void print(int N, table []);
- void sort(int N, table []);
+ //void random(int N, table[]);
+ void print(int N, table[]);
+ void sort(int N, table[]);
  void print_menu();
  int get_variant();
  
