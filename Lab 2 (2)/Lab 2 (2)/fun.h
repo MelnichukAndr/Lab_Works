@@ -9,7 +9,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #define PRINT
-
+//#define DEBUG
 using namespace std;
 
  void input(int N, table[]);

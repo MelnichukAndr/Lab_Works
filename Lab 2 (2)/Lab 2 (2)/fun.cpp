@@ -12,12 +12,7 @@ void input(int N, table arr[])
         cout << i + 1 << ") " << "Введите: вещество, тип, влажность, коеффициент >" << endl;
         cin >> arr[i].name >> arr[i].sc >> arr[i].cnt >> arr[i].sq;
     }   
-        cout << endl << endl;
-        cout << __FILE__ << endl;
-        cout << __DATE__ << endl;
-        cout << __FUNCTION__ << endl;
-        cout << __TIME__ << endl;
-        cout << endl << endl;
+        
 #else
     cout << "PRINT undefined!" << endl;
     cout << "Заполняем рандомно..." << endl;
@@ -33,7 +28,18 @@ void input(int N, table arr[])
         arr[i].sq = (double)(rand()) / RAND_MAX * 100;
     }
 #endif
-        
+#ifdef DEBUG
+   
+    cout << endl << endl; 
+    cout << "DEBUG defined!" << endl;
+    cout << __FILE__ << endl;
+    cout << __DATE__ << endl;
+    cout << __FUNCTION__ << endl;
+    cout << __TIME__ << endl;
+    cout << endl << endl;
+#else
+    cout << "DEBUG undefined!" << endl;
+#endif
 }
 
 
@@ -75,16 +81,19 @@ void print(int N, table arr[])
     cout << "|              Д - другие материалы               |\n";
     cout << "---------------------------------------------------\n";
 
-#ifdef PRINT
-    {
-        cout << endl << endl;
-        cout << __FILE__ << endl;
-        cout << __DATE__ << endl;
-        cout << __FUNCTION__ << endl;
-        cout << __TIME__ << endl;
-        cout << endl << endl;
-    }
+#ifdef DEBUG
+    
+    cout << endl << endl;
+    cout << "DEBUG defined!" << endl;
+    cout << __FILE__ << endl;
+    cout << __DATE__ << endl;
+    cout << __FUNCTION__ << endl;
+    cout << __TIME__ << endl;
+    cout << endl << endl;
+#else
+    cout << "DEBUG undefined!" << endl;
 #endif
+
 }
 
 void sort(int N, table arr[])
@@ -116,15 +125,17 @@ void sort(int N, table arr[])
             arr[m].sq = x.sq;
         }
     }
-#ifdef PRINT
-    {
-        cout << endl << endl;
-        cout << __FILE__ << endl;
-        cout << __DATE__ << endl;
-        cout << __FUNCTION__ << endl;
-        cout << __TIME__ << endl;
-        cout << endl << endl;
-    }
+#ifdef DEBUG
+    
+    cout << endl << endl;
+    cout << "DEBUG defined!" << endl;
+    cout << __FILE__ << endl;
+    cout << __DATE__ << endl;
+    cout << __FUNCTION__ << endl;
+    cout << __TIME__ << endl;
+    cout << endl << endl;
+#else
+    cout << "DEBUG undefined!" << endl;
 #endif
 }
 
