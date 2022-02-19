@@ -45,6 +45,6 @@ int main()
 		delete[] arr;
 		delete[] brr;
 	} while (answer != false);
-	
+
 	return 0;
 }
