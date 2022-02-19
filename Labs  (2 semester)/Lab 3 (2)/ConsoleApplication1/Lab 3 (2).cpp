@@ -7,29 +7,44 @@ int main()
 	srand(time(NULL));
 
 	int size;
+	bool answer = true;
+	do {
 
-	cout << "Введите размер массива в диапозоне 1-100 " << endl;
-	cin >> size;
-	if (size < 1 || size>100) cout << "Введите размер в диапозоне 1-100";
 
-	int* arr = new int[size];
-	int* brr = new int[3];
+		cout << "Введите размер массива в диапозоне 1-100 " << endl;
+		cin >> size;
+		if (size < 1 || size>100) cout << "Введите размер в диапозоне 1-100";
+		system("cls");
 
-	fill(arr, size);
-	print(arr, size);
-	sort(arr, size);
+		int* arr = new int[size];
+		int* brr = new int[3];
 
-	cout << "\n";
+		fill(arr, size);
+		cout << "Первый массив" << endl;
+		print(arr, size);
+		sort(arr, size);
 
-	print(arr, size); //sort arr
+		cout << "\n\n\n";
 
-	cout <<"\n\n\n\n";
+		cout << "Отсортированый первый массив" << endl;
+		print(arr, size); //output sort arr
 
-	barr(arr, brr); // fill brr
-	print(brr, 3);
+		cout << "\n\n\n";
 
-	cout <<"\n";
+		barr(arr, brr); // fill brr
+		cout << "Массив из первых трёх минимальных элементов" << endl;
+		print(brr, 3);
 
-	delete[] arr;
-	delete[] brr;
+		cout << "\n\n\n";
+
+		cout << "Выполнять программу дальше, введите - 1" << endl << "Выйти из программы, введите - 0 " << endl;
+		cin >> answer;
+		system("pause");
+		system("cls");
+
+		delete[] arr;
+		delete[] brr;
+	} while (answer != false);
+	
+	return 0;
 }
