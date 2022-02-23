@@ -53,12 +53,14 @@ int main()
 			print(arr, size);
 			cout << endl << "Абсолютный адрес" << endl;
 			sum = 0, c = 0;
+
 			for (int i = 0; i < size; i++)
 			{
 				if (*arr < 0)
 					sum += *arr, c++;
 				arr++;
 			}
+
 			cout << "Сумма отрицательных элементов: " << sum << endl;
 			cout << "Кол-во отрицательных элементов: " << c << endl;
 			system("pause");
@@ -72,11 +74,13 @@ int main()
 			print(arr, size);
 			cout << endl << "Без использования адресации: " << endl;
 			sum = 0, c = 0;
+
 			for (arr = null_ptr; arr < null_ptr + size; arr++)
 			{
 				if (*arr < 0)
 					sum += *arr, c++;
 			}
+
 			cout << "Сумма отрицательных элементов: " << sum << endl;
 			cout << "Кол-во отрицательных элементов: " << c << endl;
 			system("pause");
@@ -90,16 +94,20 @@ int main()
 			print(arr, size);
 			cout << endl << "Через массив указателей: " << endl;
 			sum = 0, c = 0;
+
 			int* ptr_arr[100];
+
 			for (int i = 0; i < size; i++)
 			{
 				ptr_arr[i] = &arr[i];
 			}
+
 			for (int i = 0; i < size; i++)
 			{
 				if (*ptr_arr[i] < 0)
 					sum += (*ptr_arr[i]), c++;
 			}
+
 			cout << "Сумма отрицательных элементов: " << sum << endl;
 			cout << "Кол-во отрицательных элементов: " << c << endl;
 			system("pause");
@@ -114,6 +122,7 @@ int main()
 			cout << endl << "Указатель на указатель" << endl;
 			sum = 0, c = 0;
 			int** ptr_ptr;
+
 			for (int i = 0; i < size; i++)
 			{
 				ptr_ptr = &arr;
@@ -121,6 +130,7 @@ int main()
 					sum += **ptr_ptr, c++;
 				arr++;
 			}
+
 			cout << "Сумма отрицательных элементов: " << sum << endl;
 			cout << "Кол-во отрицательных элементов: " << c << endl;
 			system("pause");
@@ -135,7 +145,9 @@ int main()
 			print(arr, size);
 			cout << endl << "В виде функции с параметрами указателями" << endl;
 			sum = 0, c = 0;
+
 			foo(arr, size, &sum, &c);
+
 			cout << "Сумма отрицательных элементов: " << sum << endl;
 			cout << "Кол-во отрицательных элементов: " << c << endl;
 			system("pause");
