@@ -81,9 +81,9 @@ int get_variant()
 {
 	int variant;
 	cin >> variant;
-	if (variant < 1 || variant > 6)
+	if (variant < 1 || variant > 4)
 	{
-		cout << "Ââåäèòå ÷èñëî â äèàïîçîíå 1 - 6" << endl;
+		cout << "Enter number 1 - 4" << endl;
 		return 0;
 	}
 	else
