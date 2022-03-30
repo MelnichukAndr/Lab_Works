@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="foo.cpp" />
     <ClCompile Include="Lab 5 (2).cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="foo.h" />

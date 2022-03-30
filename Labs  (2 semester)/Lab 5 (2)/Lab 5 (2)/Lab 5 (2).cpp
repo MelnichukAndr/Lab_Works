@@ -1,6 +1,6 @@
 ﻿#include "foo.h"
 
-//#define ARRAY
+#define ARRAY
 
 int main(void)
 {
@@ -21,40 +21,45 @@ int main(void)
     int* arr = new int[size * size];
 
     fill_array(arr, size);
+    cout << "Изначальный одномерный массив\n";
     print_array(arr, size);
+    buble_sort(arr, size);
+    cout << "\n";
+    
+    cout << "\n";
+    cout << "Массив по заднию\n";
     sort_array(arr, size);
+    cout << "\n\n";
+    
 
     cout << "\n\n";
 
-    print_array(arr, size);
+    
 
     delete[]arr, arr = nullptr;
 
 #else
-    int nRow;
-    int nCol;
+    int size2;
+    
 
-    cout << "Введите количество строк > ";
-    cin >> nRow;
-
-    cout << "Введите количество столбцов > ";
-    cin >> nCol;
+    cout << "Введите количество  > ";
+    cin >> size2;
 
     int** matrix = nullptr;
     
-    alloc_matrix(matrix, nRow, nCol);
+    alloc_matrix(matrix, size2);
 
-    fill_matrix(matrix, nRow, nCol);
+    fill_matrix(matrix, size2);
+    cout << "Изначальная матрица\n";
+    print_matrix(matrix, size2);
 
-    print_matrix(matrix, nRow, nCol);
-
-    sort_matrix(matrix, nRow, nCol);
-
+    buble2_sort(matrix, size2);
     cout << "\n\n";
+    
+    cout << "Матрица по заднию\n";
+    sort_matrix(matrix, size2);
 
-    print_matrix(matrix, nRow, nCol);
-
-    release_matrix(matrix, nRow);
+    release_matrix(matrix, size2);
 #endif
 
 }
