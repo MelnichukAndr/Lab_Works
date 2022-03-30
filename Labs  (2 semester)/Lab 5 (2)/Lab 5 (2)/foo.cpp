@@ -109,7 +109,7 @@ void fill_matrix(int** m, int size) {
     {
         for (int j = 0; j < size; j++)
         {
-            *(*(m+i)+j) = rand() % 100;
+            *(*(m + i) + j) = rand() % 100;
         }
     }
 }

@@ -76,4 +76,5 @@ int main()
 	} while (variant != 6);
 
 	release_matrix(matrix, SIZE);
+	delete[]arr;
 }

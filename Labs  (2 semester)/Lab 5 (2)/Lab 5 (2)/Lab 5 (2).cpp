@@ -1,6 +1,6 @@
 ﻿#include "foo.h"
 
-#define ARRAY
+//#define ARRAY
 
 int main(void)
 {
