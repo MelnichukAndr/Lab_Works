@@ -18,7 +18,7 @@ int main()
 
 	alloc_matrix(matrix, SIZE);
 	fill_matrix(matrix, SIZE);
-	
+	print_matrix(matrix, SIZE);
 
 	arr = foo(matrix, SIZE, min_col_el, max_row_el, &sum_gd, &sum_pd);
 
