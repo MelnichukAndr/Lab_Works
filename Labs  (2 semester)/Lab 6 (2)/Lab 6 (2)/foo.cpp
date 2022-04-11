@@ -1,16 +1,16 @@
 #include "foo.h"
 void foo(char* S, char* S1, int num, int amount)
 {
-	int prob1 = 0;
-	while (prob1 != num - 1 && *S != '\0')
+	int p_1 = 0;
+	while (p_1 != num - 1 && *S != '\0')
 	{
-		if (*S == ' ') prob1++;
+		if (*S == ' ') p_1++;
 		S++;
 	}
-	int prob2 = 0;
-	while (prob2 != amount && *S != '\0')
+	int p_2 = 0;
+	while (p_2 != amount && *S != '\0')
 	{
-		if (*S == ' ') prob2++;
+		if (*S == ' ') p_2++;
 		*S1 = *S;
 		S1++; S++;
 	}
@@ -18,19 +18,19 @@ void foo(char* S, char* S1, int num, int amount)
 }
 void counter(char* S, int* count)
 {
-	int slovo;
+	int word;
 	int i = 0;
 	while (*(S + i) == ' ' && *(S + i) != '\0')
 		i++;
-	slovo = 0;
+	word = 0;
 	while (*(S + i) != '\0') {
-		if (*(S + i) != ' ' && slovo == 0)
+		if (*(S + i) != ' ' && word == 0)
 		{
-			slovo = 1;
+			word = 1;
 			*count = *count+1;
 		}
 		else if (*(S + i) == ' ')
-			slovo = 0;
+			word = 0;
 		i++;
 	}
 }
