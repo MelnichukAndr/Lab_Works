@@ -4,6 +4,9 @@ table arr[10];
 
 void menu()
 {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    
     int N;
     int variant;
     do

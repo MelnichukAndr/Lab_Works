@@ -18,8 +18,8 @@ int main()
 		system("cls");
 
 		cout << "Enter string: " << endl;
-		cin.getline(S, 80);
-		
+		//cin.getline(S, 80);
+		gets_s(S, 80);
 		if (strlen(S) < 1) 
 		{
 			HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
