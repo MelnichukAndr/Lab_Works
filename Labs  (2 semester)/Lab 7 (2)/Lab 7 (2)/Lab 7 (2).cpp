@@ -3,22 +3,59 @@
 
 int main()
 {
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
-	
-	char s[80];
-	FILE* f;
-	fopen_s(&f, "file.txt", "a+");
-	
-	if (f == NULL) {			//!f
-		puts("Ошибка открытия файла.");
-		exit(0);
-	}
-	while (!feof(f)) {
-		fgets(s, 80, f);
-		printf("%s", s);
-	}
-	
-	fclose(f);
-	
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    srand(time(NULL));
+    int mode;
+    int variant;
+
+    char fname[] = "file.txt";
+
+    do
+    {
+        print_menu();
+        variant = get_variant();
+        switch (variant)
+        {
+        case 1:
+        {
+            mode = 1;
+            input_in_file(fname, &mode);
+        }break;
+
+        case 2:
+        {
+            mode = 2;
+            input_in_file(fname, &mode);
+        }break;
+
+        case 3:
+        {
+
+            mode = 3;
+            input_in_file(fname, &mode);
+        }break;
+
+        
+        case 4:
+        {
+            one_material_print(fname);
+        }break;
+        case 5:
+        {
+            all_materials_print(fname);
+        }break;
+        case 6: 
+        {
+            clear_file(fname);
+        }break;
+		
+        
+        
+        } 
+        if (variant != 7)
+            system("pause");
+    }while (variant != 7);
 }
+
+
