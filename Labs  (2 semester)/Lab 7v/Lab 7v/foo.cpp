@@ -54,29 +54,27 @@ int sum(char* fname)
 void sort(char* fname)
 {
 	FILE* f;
-	int arr[20];
-
+	int min = INT_MAX, index = 0;
+	int x;
 	fopen_s(&f, fname, "r+b");
-
-	for (int i = 0; i < 20; i++)
-		fread(&*(arr + i), sizeof(int), 1, f);
-
-	int min = *arr;
-	for (int i = 0; i < 20; ++i)
-		if (*(arr + i) < min)
-			min = *(arr + i);
-
-	cout << "Min number = " << min << "\n\n";
-
-	fseek(f, 0, SEEK_SET);
-	for (int i = 0; i < 20; i++) {
-		if (*(arr + i) == min) {
-			int x = 999;
-			fwrite(&x, sizeof(int), 1, f);
-			i++;
-		}
-		fwrite(&*(arr + i), sizeof(int), 1, f);
+	
+	for(int i = 0; i < 20; i++){
+		fread(&x, sizeof(int), 1, f);
+		if (x < min) min = x, index = i;
 	}
 
+	cout << "min = " << min;
+	
+	fseek(f, 0, SEEK_SET);
+	
+		while (!feof(f)) {
+		fread(&x, sizeof(int), 1, f);
+		if (x == min) {
+			fseek(f, index * sizeof(int), SEEK_SET);
+			x = 999;
+			fwrite(&x, sizeof(int), 1, f);
+			fseek(f, 0, SEEK_END);
+		}
+	}
 	fclose(f);
 }
