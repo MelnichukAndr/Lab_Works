@@ -14,7 +14,7 @@ struct table
     char type;
     char cnt[12];
     float sq;
-    struct table* next;	
+    struct table* next;
 };
 
 table* create_list_by_hand();
@@ -23,6 +23,7 @@ table* search_by_name(table* head, char* name);
 table* search_by_type(table* head, char type);
 table* search_by_cnt(table* head, char* cnt);
 table* search_by_sq(table* head, float sq);
+table* read_from_file();
 void print_list(table* head);
 void add_to_begin(table** head);
 void add_to_end(table* head);
@@ -32,8 +33,4 @@ void delete_last(table** head);
 void delete_element(table** head);
 void sort(table* head);
 void input_in_file(table* head);
-
-
-
-
 
