@@ -39,7 +39,6 @@ table* create_list_random() {
 
 	head = previous = ptr = new table;
 
-
 	int N;
 	cout << "Enter N: ";
 	cin >> N;
@@ -55,14 +54,14 @@ table* create_list_random() {
 
 	for (int i = 0; i < N; i++)
 	{
-		ptr = new table;
-		if (head == nullptr)
+		ptr = new table; // выделяем память под следующий элемент
+		if (head == nullptr) 
 			head = ptr; // если нет элементов в списке, то первый элемент становится первым
 		else
 			previous->next = ptr; // предыдущий указывает на текущий
 
-		previous = ptr; // предыдущий становится текущим
-
+		previous = ptr; // предыдущий указатель становится текущим
+		
 
 		strcpy_s(ptr->name, names[rand() % 5].c_str());
 		ptr->type = symbol[rand() % 3];
