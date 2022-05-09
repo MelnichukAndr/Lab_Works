@@ -1,5 +1,6 @@
 #include "foo.h"
-
+SetConsoleCP(1251);
+SetConsoleOutputCP(1251);
 extern struct table* head , * tail;
 
 void create_list_by_hand()
