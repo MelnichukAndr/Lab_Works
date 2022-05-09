@@ -6,7 +6,6 @@ int main() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	
-	
 	while (1) {
 		int a;
 		cout << "1. Создать список по ручному вводу\n2. Создать список по случайному вводу\n3. Вывести список\n4. Поиск по названию\n5. Добавить в список\n6. Удаление\n7. Сортировка\n8. Запись в файл\n9. Создание нового списка из файла\n10.Выход\n";
@@ -215,33 +214,36 @@ int main() {
 			
 		case 5:
 			system("cls");
-			cout << " 1 - Добавить в начало\n 2 - Добавить в конец\n 3 - Добавить после заданного элемента\n > ";
 			int c;
-			cin >> c;
-			switch (c) {
-
-			case 1:
-				add_to_begin(&head);
-				system("pause");
+			do {
 				system("cls");
-				break;
-			case 2:
-				add_to_end(head);
-				system("pause");
-				system("cls");
-				break;
-			case 3:
-				if (head == NULL) {
-					printf("%s\n", "list is null");
+				cout << " 1 - Добавить в начало\n 2 - Добавить в конец\n 3 - Добавить после заданного элемента\n 0 - В меню\n > ";
+				cin >> c;
+				switch (c) {
+					if (head == NULL) {
+						printf("%s\n", "list is null");
+						system("pause");
+						system("cls");
+						break;
+					}
+				case 1:
+					add_to_begin();
+					system("pause");
+					system("cls");
+					break;
+				case 2:
+					add_to_end();
+					system("pause");
+					system("cls");
+					break;
+				case 3:
+					add_after_element();
 					system("pause");
 					system("cls");
 					break;
 				}
-				add_after_element(head);
-				system("pause");
-				system("cls");
-				break;
-			}
+			} while (c != 0);
+			system("cls");
 			break;
 		case 6:
 			system("cls");
@@ -256,7 +258,7 @@ int main() {
 					system("cls");
 					break;
 				}
-				delete_first(&head);
+				delete_first();
 				system("pause");
 				system("cls");
 				break;
@@ -267,7 +269,7 @@ int main() {
 					system("cls");
 					break;
 				}
-				delete_last(&head);
+				delete_last();
 				system("pause");
 				system("cls");
 				break;
@@ -278,7 +280,7 @@ int main() {
 					system("cls");
 					break;
 				}
-				delete_element(&head);
+				delete_element();
 				system("pause");
 				system("cls");
 				break;
@@ -291,7 +293,7 @@ int main() {
 				system("cls");
 				break;
 			}
-			sort(head);
+			sort();
 			system("pause");
 			system("cls");
 			break;
@@ -302,22 +304,18 @@ int main() {
 				system("cls");
 				break;
 			}
-			input_in_file(head);
+			input_in_file();
 			system("pause");
 			system("cls");
 			break;
 
 		case 9:
-
-			head = read_from_file();
-
+			read_from_file();
 			system("pause");
 			system("cls");
 			break;
-
 		case 10:
 			exit(0);
-
 		}
 	}
 }

@@ -24,7 +24,6 @@ void create_list_by_hand()
 	tail = ptr;
 	tail->next = nullptr;
 }
-
 void create_list_random() {
 	table* ptr,* previous;
 
@@ -58,7 +57,6 @@ void create_list_random() {
 	tail->next = nullptr;
 	
 }
-
 void print_list_begin(table* head) {
 	table* ptr = head;
 	while (ptr != nullptr)
@@ -68,7 +66,6 @@ void print_list_begin(table* head) {
 	}
 	cout << "\n";
 }
-
 void print_list_end(table* tail) {
 	table* ptr = tail;
 	while (ptr != nullptr)
@@ -78,7 +75,6 @@ void print_list_end(table* tail) {
 	}
 	cout << "\n";
 }
-
 void search_by_name(table* p, char* name) {
 	table* ptr = p;
 	if (ptr == head)
@@ -161,15 +157,19 @@ void search_by_sq(table* p, float sq) {
 		}
 	}
 }
-
-void add_to_begin(table** head) {
+void add_to_begin() {
 	table* ptr = new table;
 	cout << "\n¬ведите материал и хар-ки:\n";
 	cin >> ptr->name >> ptr->type >> ptr->cnt >> ptr->sq;
-	ptr->next = *head; // первый элемент становитс€ вторым
-	*head = ptr; // первый элемент становитс€ первым
+	ptr->prev = nullptr; // предыдущий указатель на nullptr
+	ptr->next = head;// следующий указатель на первый элемент
+	head->prev = ptr; // предыдущий указатель на новый узел
+	head = ptr; // новый узел становитс€ головой
+	 
+	
+	
 }
-void add_to_end(table* head) {
+void add_to_end() {
 	table* ptr = head;
 	table* previous = nullptr;
 
@@ -182,10 +182,11 @@ void add_to_end(table* head) {
 	cout << "\n¬ведите материал и хар-ки:\n";
 	cin >> ptr->name >> ptr->type >> ptr->cnt >> ptr->sq;
 	previous->next = ptr; // предыдущий указывает на текущий
+	ptr->prev = previous; // текущий указывает на предыдущий
 	ptr->next = nullptr; // конец списка
+	tail = ptr;
 }
-
-void add_after_element(table* head)
+void add_after_element()
 {
 	table* ptr = head;
 	table* previous = head;
@@ -197,7 +198,9 @@ void add_after_element(table* head)
 		if (strcmp(previous->name, name) == 0)
 		{
 			ptr = new table;
-			ptr->next = previous->next; // предыдущий указывает на текущий
+			ptr->next = previous->next; // следующий указывает на текущий
+			previous->next->prev = ptr; // текущий указывает на предыдущий
+			ptr->prev = previous; // предыдущий указывает на новый узел
 			previous->next = ptr; // предыдущий становитс€ текущим
 			cout << "\n¬ведите материал и хар-ки:\n";
 			cin >> ptr->name >> ptr->type >> ptr->cnt >> ptr->sq;
@@ -209,41 +212,52 @@ void add_after_element(table* head)
 
 	}
 }
-
-void delete_first(table** head) {
-	table* ptr = *head;
-	*head = ptr->next;
-	delete ptr;
+void delete_first() {
+	table* ptr = head;
+	head = ptr->next;
+	head->prev = NULL;
+	free(ptr);
+	ptr = head;
 }
-void delete_last(table** head) {
-	table* ptr = *head;
+void delete_last() {
+	table* ptr = head;
 	table* previous = nullptr;
 	while (ptr->next) {
 		previous = ptr;
 		ptr = ptr->next;
 	}
 	if (previous == nullptr) {
-		delete_first(head);
+		delete_first();
 		return;
 	}
 	previous->next = nullptr;
-	delete ptr;
+	tail = previous;
+	free(ptr);
+	
 }
-void delete_element(table** head) {
-	table* ptr = *head;
+void delete_element() {
+	table* ptr = head;
 	table* previous = nullptr;
 	char name[11];
 	cout << "\n¬ведите название материала: ";
 	cin >> name;
 	if (strcmp(ptr->name, name) == 0) {
-		delete_first(head);
+		delete_first();
 		system("cls");
 		return;
 	}
 	while (ptr) {
 		if (strcmp(ptr->name, name) == 0) {
-			previous->next = ptr->next;
-			delete ptr;
+			if (ptr->next == nullptr) {
+				previous->next = nullptr;
+				tail = previous;
+				free(ptr);
+				system("cls");
+				return;
+			}
+			ptr->next->prev = ptr->prev;
+			ptr->prev->next = ptr->next;
+			free(ptr);
 			system("cls");
 			return;
 		}
@@ -253,8 +267,7 @@ void delete_element(table** head) {
 		}
 	}
 }
-
-void sort(table* head) {
+void sort() {
 	table* left = head;
 	table* right = head->next;
 	while (left->next) { // пока не дошли до конца списка
@@ -271,8 +284,7 @@ void sort(table* head) {
 		right = left->next; // переходим к следующему элементу
 	}
 }
-
-void input_in_file(table* head) {
+void input_in_file() {
 	table* ptr = head;
 
 	FILE* f;
@@ -286,10 +298,10 @@ void input_in_file(table* head) {
 	}
 	fclose(f);
 }
-
-table* read_from_file() {
-	table* ptr, * head, * previous;
+void read_from_file() {
+	table* ptr, * previous;
 	ptr = head = previous = new table;
+	head->prev = nullptr;
 	FILE* f;
 	char fname[] = "file.txt";
 	fopen_s(&f, fname, "rt");
@@ -299,11 +311,12 @@ table* read_from_file() {
 		ptr = new table;
 		fscanf(f, " %s %c %s %f", &ptr->name, &ptr->type, &ptr->cnt, &ptr->sq);
 		previous->next = ptr;
+		ptr->prev = previous;
 		previous = ptr;
 	}
 	ptr->next = nullptr;
+	tail = ptr;
 	cout << "Done!" << endl;
 	fclose(f);
-	return head;
 
 }
