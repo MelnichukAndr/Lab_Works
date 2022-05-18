@@ -1,7 +1,10 @@
 #include "MyForm.h"
+#include "struct.h"
+#include <iostream>
 
 using namespace System;
 using namespace System::Windows::Forms;
+
 
 void main(array<String^>^ args) {
 	Application::EnableVisualStyles();
@@ -50,9 +53,7 @@ void Snake::MyForm::GeneratePositionFruit()
 	for (int i = 0; i < score; i++)
 	{
 		if (positionFruit.X == snake[i]->Location.X && positionFruit.Y == snake[i]->Location.Y)
-		{
 			GeneratePositionFruit();
-		}
 	}
 
 	//присваеваем позицию фрукту
@@ -65,9 +66,9 @@ void Snake::MyForm::GeneratePositionFruit()
 void Snake::MyForm::Eating()
 {
 	//проверим голову змеи и позицию фрукта
+	
 	if (snake[0]->Location.X == positionFruit.X && snake[0]->Location.Y == positionFruit.Y) {
 		Score->Text = "Очки: " + ++score;
-
 		//добавляем новый элемент змейке
 		snake[score] = gcnew PictureBox();
 		snake[score]->Location = Point(snake[score - 1]->Location.X + step * direction.X, snake[score - 1]->Location.Y - step * direction.Y);
@@ -87,9 +88,8 @@ void Snake::MyForm::Movement()
 {
 	//двигаем каждый элемент змейки
 	for (int i = score; i >= 1; i--)
-	{
 		snake[i]->Location = snake[i - 1]->Location;
-	}
+	
 	snake[0]->Location = Point(snake[0]->Location.X + direction.X * step, snake[0]->Location.Y + direction.Y * step);
 }
 
@@ -98,10 +98,10 @@ void Snake::MyForm::EatYourself()
 	//проверка позиции каждой части змейки
 	for (int i = 1; i < score; i++) {
 		if (snake[0]->Location == snake[i]->Location)
-		{
 			GameOver();
-		}
 	}
+	
+	
 }
 
 void Snake::MyForm::GameOver()
@@ -110,7 +110,11 @@ void Snake::MyForm::GameOver()
 	die = true;
 
 	Game_over->Visible = true;
-	//MyFormMainFormMenu->Visible = true;
+	
+	
+	
+	
+	
 }
 
 void Snake::MyForm::NewGame()
@@ -121,19 +125,15 @@ void Snake::MyForm::NewGame()
 		this->Controls->Remove(fruit);
 		if (!firstLaunch) {
 			for (int i = 0; i <= score; i++)
-			{
 				this->Controls->Remove(snake[i]);
-			}
 		}
 	}
 	else
-	{
 		firstLaunch = false;
-	}
+	
 	//можно играть
 	play = true;
 	die = false;
-
 
 	score = 0;
 	//создаем змейку
@@ -143,7 +143,7 @@ void Snake::MyForm::NewGame()
 	snake[0]->Image = serpens;
 	snake[0]->SizeMode = PictureBoxSizeMode::StretchImage;
 	snake[0]->Location = Point(250, 250);
-	//snake[0]->BackColor = Color::SlateGray;//цвет головы
+	snake[0]->BackColor = Color::SlateGray;//цвет головы
 	snake[0]->Width = step;
 	snake[0]->Height = step;
 
@@ -199,9 +199,7 @@ System::Void Snake::MyForm::паузаПродолжитьToolStripMenuItem_Click(System::Objec
 		play = true;
 		timer->Start();
 	}
-
 	return System::Void();
-
 }
 
 System::Void Snake::MyForm::правилаToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
@@ -219,10 +217,8 @@ System::Void Snake::MyForm::выходToolStripMenuItem_Click(System::Object^ sender,
 	Application::Exit();
 }
 
-
 System::Void Snake::MyForm::MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e)
 {
-
 	//считываем нажатую клавишу
 	if (e->KeyCode.ToString() == "Right")//39
 	{
@@ -233,12 +229,7 @@ System::Void Snake::MyForm::MyForm_KeyDown(System::Object^ sender, System::Windo
 			Bitmap^ right = gcnew Bitmap("C:/Users/Homo/source/repos/dimensenss/Lab_Works/Snake/resources/head_snake_right.png");
 			snake[0]->Image = right;
 			snake[0]->SizeMode = PictureBoxSizeMode::StretchImage;
-			/*Bitmap^ bit = gcnew Bitmap("C:/Users/Homo/source/repos/dimensenss/Lab_Works/Snake/resources/body_snake_left.png");
-			snake[score]->Image = bit;
-			snake[score]->SizeMode = PictureBoxSizeMode::StretchImage;*/
-
 		}
-
 	}
 	else if (e->KeyCode.ToString() == "Left")//37
 	{
@@ -249,12 +240,7 @@ System::Void Snake::MyForm::MyForm_KeyDown(System::Object^ sender, System::Windo
 			Bitmap^ left = gcnew Bitmap("C:/Users/Homo/source/repos/dimensenss/Lab_Works/Snake/resources/head_snake_left.png");
 			snake[0]->Image = left;
 			snake[0]->SizeMode = PictureBoxSizeMode::StretchImage;
-			
-			/*Bitmap^ bit = gcnew Bitmap("C:/Users/Homo/source/repos/dimensenss/Lab_Works/Snake/resources/body_snake_left.png");
-			snake[score]->Image = bit;
-			snake[score]->SizeMode = PictureBoxSizeMode::StretchImage;*/
 		}
-
 	}
 	else if (e->KeyCode.ToString() == "Up")//38
 	{
@@ -265,11 +251,7 @@ System::Void Snake::MyForm::MyForm_KeyDown(System::Object^ sender, System::Windo
 			Bitmap^ up = gcnew Bitmap("C:/Users/Homo/source/repos/dimensenss/Lab_Works/Snake/resources/head_snake.png");
 			snake[0]->Image = up;
 			snake[0]->SizeMode = PictureBoxSizeMode::StretchImage;
-			/*Bitmap^ bit = gcnew Bitmap("C:/Users/Homo/source/repos/dimensenss/Lab_Works/Snake/resources/body_snake.png");
-			snake[score]->Image = bit;
-			snake[score]->SizeMode = PictureBoxSizeMode::StretchImage;*/
 		}
-
 	}
 	else if (e->KeyCode.ToString() == "Down")//40
 	{
@@ -280,13 +262,8 @@ System::Void Snake::MyForm::MyForm_KeyDown(System::Object^ sender, System::Windo
 			Bitmap^ down = gcnew Bitmap("C:/Users/Homo/source/repos/dimensenss/Lab_Works/Snake/resources/head_snake_down.png");
 			snake[0]->Image = down;
 			snake[0]->SizeMode = PictureBoxSizeMode::StretchImage;
-			/*Bitmap^ bit = gcnew Bitmap("C:/Users/Homo/source/repos/dimensenss/Lab_Works/Snake/resources/body_snake_down.png");
-			snake[score]->Image = bit;
-			snake[score]->SizeMode = PictureBoxSizeMode::StretchImage;*/
 		}
-
 	}
-
 	return System::Void();
 }
 
@@ -306,8 +283,6 @@ void Snake::MyForm::GameForm_Update(Object^ obgect, EventArgs^ e)
 	}
 	
 }
-
-
 
 System::Void Snake::MyForm::скоростьToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
@@ -346,48 +321,31 @@ System::Void Snake::MyForm::buttonApplySpeed_Click(System::Object^ sender, Syste
 
 	return System::Void();
 }
-//
-//System::Void Snake::MyForm::buttonSlow_Click(System::Object^ sender, System::EventArgs^ e)
+
+
+
+System::Void Snake::MyForm::сохранитьДанныеToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	FILE* f;
+	fopen_s(&f, "score.txt", "wt");
+	
+	fprintf(f, "%d", score);
+	fclose(f);
+}
+//System::Void Snake::MyForm::buttonApplyText_Click(System::Object^ sender, System::EventArgs^ e)
 //{
-//	updateInterval = Convert::ToSingle(300);
-//	timer->Interval = updateInterval;
-//
-//	buttonSlow->Enabled = false;
-//	//numericUpDownSpeedSnake->Enabled = false;
-//	groupBoxSettings->Visible = false;
-//
 //	
+//	String^ str = textBoxName->Text;
+//	
+//	
+//	
+//	buttonApplyText->Enabled = false;
+//	textBoxName->Enabled = false;
+//	PrintList->Visible = false;
+//
+//
 //	play = true;
 //	timer->Start();
-//	return System::Void();
-//}
 //
-//System::Void Snake::MyForm::buttonMedium_Click(System::Object^ sender, System::EventArgs^ e)
-//{
-//	updateInterval = Convert::ToSingle(1000);
-//	timer->Interval = updateInterval;
-//
-//	buttonMedium->Enabled = false;
-//	//numericUpDownSpeedSnake->Enabled = false;
-//	groupBoxSettings->Visible = false;
-//
-//	
-//	play = true;
-//	timer->Start();
-//	return System::Void();
-//}
-//
-//System::Void Snake::MyForm::buttonFast_Click(System::Object^ sender, System::EventArgs^ e)
-//{
-//	updateInterval = Convert::ToSingle(80);
-//	timer->Interval = updateInterval;
-//
-//	buttonFast->Enabled = false;
-//	//numericUpDownSpeedSnake->Enabled = false;
-//	groupBoxSettings->Visible = false;
-//
-//	
-//	play = true;
-//	timer->Start();
 //	return System::Void();
 //}

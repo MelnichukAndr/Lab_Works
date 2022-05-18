@@ -71,6 +71,11 @@ namespace Snake {
 	private: System::Windows::Forms::Button^ buttonApplySpeed;
 	private: System::Windows::Forms::GroupBox^ groupBoxSettings;
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown;
+	private: System::Windows::Forms::ToolStripMenuItem^ ñîõğàíèòüÄàííûåToolStripMenuItem;
+
+
+
+
 
 
 
@@ -108,6 +113,7 @@ namespace Snake {
 			this->ïğàâèëàToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->âûõîäToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ñêîğîñòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ñîõğàíèòüÄàííûåToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->GameData = (gcnew System::Windows::Forms::GroupBox());
 			this->Score = (gcnew System::Windows::Forms::Label());
 			this->timer = (gcnew System::Windows::Forms::Timer(this->components));
@@ -133,9 +139,9 @@ namespace Snake {
 			// menuStrip1
 			// 
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
 				this->ìåíşToolStripMenuItem,
-					this->ïğàâèëàToolStripMenuItem, this->âûõîäToolStripMenuItem, this->ñêîğîñòüToolStripMenuItem
+					this->ïğàâèëàToolStripMenuItem, this->ñêîğîñòüToolStripMenuItem, this->ñîõğàíèòüÄàííûåToolStripMenuItem, this->âûõîäToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -188,13 +194,20 @@ namespace Snake {
 			this->ñêîğîñòüToolStripMenuItem->Text = L"Ñêîğîñòü";
 			this->ñêîğîñòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::ñêîğîñòüToolStripMenuItem_Click);
 			// 
+			// ñîõğàíèòüÄàííûåToolStripMenuItem
+			// 
+			this->ñîõğàíèòüÄàííûåToolStripMenuItem->Name = L"ñîõğàíèòüÄàííûåToolStripMenuItem";
+			this->ñîõğàíèòüÄàííûåToolStripMenuItem->Size = System::Drawing::Size(154, 24);
+			this->ñîõğàíèòüÄàííûåToolStripMenuItem->Text = L"Ñîõğàíèòü äàííûå";
+			this->ñîõğàíèòüÄàííûåToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::ñîõğàíèòüÄàííûåToolStripMenuItem_Click);
+			// 
 			// GameData
 			// 
 			this->GameData->BackColor = System::Drawing::Color::CornflowerBlue;
 			this->GameData->Controls->Add(this->Score);
 			this->GameData->Font = (gcnew System::Drawing::Font(L"Century Gothic", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->GameData->ForeColor = System::Drawing::SystemColors::HighlightText;
+			this->GameData->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->GameData->Location = System::Drawing::Point(12, 42);
 			this->GameData->Name = L"GameData";
 			this->GameData->Size = System::Drawing::Size(200, 100);
@@ -272,6 +285,7 @@ namespace Snake {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
+			this->label1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->label1->Location = System::Drawing::Point(10, 38);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(206, 23);
@@ -281,9 +295,10 @@ namespace Snake {
 			// buttonApplySpeed
 			// 
 			this->buttonApplySpeed->BackColor = System::Drawing::Color::Transparent;
-			this->buttonApplySpeed->Location = System::Drawing::Point(123, 119);
+			this->buttonApplySpeed->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->buttonApplySpeed->Location = System::Drawing::Point(123, 113);
 			this->buttonApplySpeed->Name = L"buttonApplySpeed";
-			this->buttonApplySpeed->Size = System::Drawing::Size(75, 23);
+			this->buttonApplySpeed->Size = System::Drawing::Size(75, 29);
 			this->buttonApplySpeed->TabIndex = 6;
 			this->buttonApplySpeed->Text = L"Îê";
 			this->buttonApplySpeed->UseVisualStyleBackColor = false;
@@ -291,14 +306,16 @@ namespace Snake {
 			// 
 			// groupBoxSettings
 			// 
+			this->groupBoxSettings->BackColor = System::Drawing::Color::CornflowerBlue;
 			this->groupBoxSettings->Controls->Add(this->numericUpDown);
 			this->groupBoxSettings->Controls->Add(this->buttonApplySpeed);
 			this->groupBoxSettings->Controls->Add(this->label1);
-			this->groupBoxSettings->Font = (gcnew System::Drawing::Font(L"MV Boli", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->groupBoxSettings->Font = (gcnew System::Drawing::Font(L"Century Gothic", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->groupBoxSettings->Location = System::Drawing::Point(277, 218);
+			this->groupBoxSettings->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->groupBoxSettings->Location = System::Drawing::Point(240, 218);
 			this->groupBoxSettings->Name = L"groupBoxSettings";
-			this->groupBoxSettings->Size = System::Drawing::Size(222, 158);
+			this->groupBoxSettings->Size = System::Drawing::Size(235, 158);
 			this->groupBoxSettings->TabIndex = 9;
 			this->groupBoxSettings->TabStop = false;
 			this->groupBoxSettings->Text = L"Íàñòîğîéêè";
@@ -361,7 +378,7 @@ namespace Snake {
 	private: bool die;//ñìåğòü
 	private: bool firstLaunch;//ïåğâûé çàïóñê
 	private: int step = 10;//øàã ñåòêè
-	private: float updateInterval = 200;//èíòåğâàë îáíîâëåíèÿ
+	private: float updateInterval = 100;//èíòåğâàë îáíîâëåíèÿ
 	private: int score = 0;//ñ÷åò 
 
 	private: void GeneratePositionFruit();
@@ -387,5 +404,7 @@ private: void GameForm_Update(Object^ obgect, EventArgs^ e);
 
 private: System::Void ñêîğîñòüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void buttonApplySpeed_Click(System::Object^ sender, System::EventArgs^ e);
+
+private: System::Void ñîõğàíèòüÄàííûåToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }
