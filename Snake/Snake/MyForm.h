@@ -41,7 +41,7 @@ namespace Snake {
 
 	private: System::Windows::Forms::ToolStripMenuItem^ правилаToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ выходToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ скоростьToolStripMenuItem;
+
 	private: System::Windows::Forms::GroupBox^ GameData;
 
 	private: System::Windows::Forms::Label^ Score;
@@ -54,18 +54,24 @@ namespace Snake {
 	private: System::Windows::Forms::PictureBox^ Bottombound;
 	private: System::Windows::Forms::PictureBox^ Rightbound;
 	private: System::Windows::Forms::PictureBox^ Leftbound;
-	private: System::Windows::Forms::Button^ buttonNewGame;
-	private: System::Windows::Forms::GroupBox^ groupBoxSettings;
-	private: System::Windows::Forms::Button^ buttonFast;
 
 
-	private: System::Windows::Forms::Button^ buttonMedium;
 
-	private: System::Windows::Forms::Button^ buttonSlow;
 
-	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::Label^ label2;
+
+
+
+
+
+
+
+
+	private: System::Windows::Forms::ToolStripMenuItem^ скоростьToolStripMenuItem;
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Button^ buttonApplySpeed;
+	private: System::Windows::Forms::GroupBox^ groupBoxSettings;
+	private: System::Windows::Forms::NumericUpDown^ numericUpDown;
+
 
 
 
@@ -110,14 +116,10 @@ namespace Snake {
 			this->Bottombound = (gcnew System::Windows::Forms::PictureBox());
 			this->Rightbound = (gcnew System::Windows::Forms::PictureBox());
 			this->Leftbound = (gcnew System::Windows::Forms::PictureBox());
-			this->buttonNewGame = (gcnew System::Windows::Forms::Button());
-			this->groupBoxSettings = (gcnew System::Windows::Forms::GroupBox());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->buttonFast = (gcnew System::Windows::Forms::Button());
-			this->buttonMedium = (gcnew System::Windows::Forms::Button());
-			this->buttonSlow = (gcnew System::Windows::Forms::Button());
+			this->buttonApplySpeed = (gcnew System::Windows::Forms::Button());
+			this->groupBoxSettings = (gcnew System::Windows::Forms::GroupBox());
+			this->numericUpDown = (gcnew System::Windows::Forms::NumericUpDown());
 			this->menuStrip1->SuspendLayout();
 			this->GameData->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Topbound))->BeginInit();
@@ -125,6 +127,7 @@ namespace Snake {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Rightbound))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Leftbound))->BeginInit();
 			this->groupBoxSettings->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// menuStrip1
@@ -136,7 +139,7 @@ namespace Snake {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(547, 28);
+			this->menuStrip1->Size = System::Drawing::Size(711, 28);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -187,7 +190,11 @@ namespace Snake {
 			// 
 			// GameData
 			// 
+			this->GameData->BackColor = System::Drawing::Color::CornflowerBlue;
 			this->GameData->Controls->Add(this->Score);
+			this->GameData->Font = (gcnew System::Drawing::Font(L"Century Gothic", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->GameData->ForeColor = System::Drawing::SystemColors::HighlightText;
 			this->GameData->Location = System::Drawing::Point(12, 42);
 			this->GameData->Name = L"GameData";
 			this->GameData->Size = System::Drawing::Size(200, 100);
@@ -198,9 +205,11 @@ namespace Snake {
 			// Score
 			// 
 			this->Score->AutoSize = true;
-			this->Score->Location = System::Drawing::Point(3, 18);
+			this->Score->Font = (gcnew System::Drawing::Font(L"Century Gothic", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->Score->Location = System::Drawing::Point(6, 53);
 			this->Score->Name = L"Score";
-			this->Score->Size = System::Drawing::Size(56, 16);
+			this->Score->Size = System::Drawing::Size(143, 40);
 			this->Score->TabIndex = 0;
 			this->Score->Text = L"Очки : 0";
 			// 
@@ -212,11 +221,11 @@ namespace Snake {
 			// 
 			this->Game_over->AutoSize = true;
 			this->Game_over->BackColor = System::Drawing::Color::Transparent;
-			this->Game_over->Font = (gcnew System::Drawing::Font(L"Calibri", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->Game_over->Font = (gcnew System::Drawing::Font(L"Century Gothic", 22.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->Game_over->Location = System::Drawing::Point(224, 180);
+			this->Game_over->Location = System::Drawing::Point(243, 171);
 			this->Game_over->Name = L"Game_over";
-			this->Game_over->Size = System::Drawing::Size(144, 35);
+			this->Game_over->Size = System::Drawing::Size(232, 44);
 			this->Game_over->TabIndex = 3;
 			this->Game_over->Text = L"Game Over";
 			this->Game_over->TextAlign = System::Drawing::ContentAlignment::TopCenter;
@@ -224,132 +233,97 @@ namespace Snake {
 			// 
 			// Topbound
 			// 
-			this->Topbound->BackColor = System::Drawing::Color::GreenYellow;
-			this->Topbound->Location = System::Drawing::Point(20, 150);
+			this->Topbound->BackColor = System::Drawing::Color::White;
+			this->Topbound->Location = System::Drawing::Point(0, 148);
 			this->Topbound->Name = L"Topbound";
-			this->Topbound->Size = System::Drawing::Size(510, 5);
+			this->Topbound->Size = System::Drawing::Size(710, 5);
 			this->Topbound->TabIndex = 4;
 			this->Topbound->TabStop = false;
 			// 
 			// Bottombound
 			// 
-			this->Bottombound->BackColor = System::Drawing::Color::GreenYellow;
-			this->Bottombound->Location = System::Drawing::Point(18, 655);
+			this->Bottombound->BackColor = System::Drawing::Color::White;
+			this->Bottombound->Location = System::Drawing::Point(0, 805);
 			this->Bottombound->Name = L"Bottombound";
-			this->Bottombound->Size = System::Drawing::Size(510, 5);
+			this->Bottombound->Size = System::Drawing::Size(710, 5);
 			this->Bottombound->TabIndex = 5;
 			this->Bottombound->TabStop = false;
 			// 
 			// Rightbound
 			// 
-			this->Rightbound->BackColor = System::Drawing::Color::GreenYellow;
-			this->Rightbound->Location = System::Drawing::Point(525, 150);
+			this->Rightbound->BackColor = System::Drawing::Color::White;
+			this->Rightbound->Location = System::Drawing::Point(705, 150);
 			this->Rightbound->Name = L"Rightbound";
-			this->Rightbound->Size = System::Drawing::Size(5, 510);
+			this->Rightbound->Size = System::Drawing::Size(5, 660);
 			this->Rightbound->TabIndex = 6;
 			this->Rightbound->TabStop = false;
 			// 
 			// Leftbound
 			// 
-			this->Leftbound->BackColor = System::Drawing::Color::GreenYellow;
-			this->Leftbound->Location = System::Drawing::Point(18, 150);
+			this->Leftbound->BackColor = System::Drawing::Color::White;
+			this->Leftbound->Location = System::Drawing::Point(0, 150);
 			this->Leftbound->Name = L"Leftbound";
-			this->Leftbound->Size = System::Drawing::Size(5, 510);
+			this->Leftbound->Size = System::Drawing::Size(5, 660);
 			this->Leftbound->TabIndex = 7;
 			this->Leftbound->TabStop = false;
-			// 
-			// buttonNewGame
-			// 
-			this->buttonNewGame->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->buttonNewGame->Location = System::Drawing::Point(453, 42);
-			this->buttonNewGame->Name = L"buttonNewGame";
-			this->buttonNewGame->Size = System::Drawing::Size(75, 50);
-			this->buttonNewGame->TabIndex = 8;
-			this->buttonNewGame->Text = L"Новая игра";
-			this->buttonNewGame->UseVisualStyleBackColor = true;
-			this->buttonNewGame->Click += gcnew System::EventHandler(this, &MyForm::buttonNewGame_Click);
-			// 
-			// groupBoxSettings
-			// 
-			this->groupBoxSettings->Controls->Add(this->label3);
-			this->groupBoxSettings->Controls->Add(this->label2);
-			this->groupBoxSettings->Controls->Add(this->label1);
-			this->groupBoxSettings->Controls->Add(this->buttonFast);
-			this->groupBoxSettings->Controls->Add(this->buttonMedium);
-			this->groupBoxSettings->Controls->Add(this->buttonSlow);
-			this->groupBoxSettings->Location = System::Drawing::Point(172, 218);
-			this->groupBoxSettings->Name = L"groupBoxSettings";
-			this->groupBoxSettings->Size = System::Drawing::Size(222, 129);
-			this->groupBoxSettings->TabIndex = 9;
-			this->groupBoxSettings->TabStop = false;
-			this->groupBoxSettings->Text = L"Настройки";
-			this->groupBoxSettings->Visible = false;
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(20, 95);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(55, 16);
-			this->label3->TabIndex = 5;
-			this->label3->Text = L"Быстро";
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(20, 66);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(56, 16);
-			this->label2->TabIndex = 4;
-			this->label2->Text = L"Средне";
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(20, 37);
+			this->label1->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label1->Location = System::Drawing::Point(10, 38);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(74, 16);
+			this->label1->Size = System::Drawing::Size(206, 23);
 			this->label1->TabIndex = 3;
-			this->label1->Text = L"Медленно";
+			this->label1->Text = L"Выберите скорость";
 			// 
-			// buttonFast
+			// buttonApplySpeed
 			// 
-			this->buttonFast->Location = System::Drawing::Point(125, 95);
-			this->buttonFast->Name = L"buttonFast";
-			this->buttonFast->Size = System::Drawing::Size(91, 23);
-			this->buttonFast->TabIndex = 2;
-			this->buttonFast->Text = L"Применить";
-			this->buttonFast->UseVisualStyleBackColor = true;
-			this->buttonFast->Click += gcnew System::EventHandler(this, &MyForm::buttonFast_Click);
+			this->buttonApplySpeed->BackColor = System::Drawing::Color::Transparent;
+			this->buttonApplySpeed->Location = System::Drawing::Point(123, 119);
+			this->buttonApplySpeed->Name = L"buttonApplySpeed";
+			this->buttonApplySpeed->Size = System::Drawing::Size(75, 23);
+			this->buttonApplySpeed->TabIndex = 6;
+			this->buttonApplySpeed->Text = L"Ок";
+			this->buttonApplySpeed->UseVisualStyleBackColor = false;
+			this->buttonApplySpeed->Click += gcnew System::EventHandler(this, &MyForm::buttonApplySpeed_Click);
 			// 
-			// buttonMedium
+			// groupBoxSettings
 			// 
-			this->buttonMedium->Location = System::Drawing::Point(125, 66);
-			this->buttonMedium->Name = L"buttonMedium";
-			this->buttonMedium->Size = System::Drawing::Size(91, 23);
-			this->buttonMedium->TabIndex = 1;
-			this->buttonMedium->Text = L"Применить";
-			this->buttonMedium->UseVisualStyleBackColor = true;
-			this->buttonMedium->Click += gcnew System::EventHandler(this, &MyForm::buttonMedium_Click);
+			this->groupBoxSettings->Controls->Add(this->numericUpDown);
+			this->groupBoxSettings->Controls->Add(this->buttonApplySpeed);
+			this->groupBoxSettings->Controls->Add(this->label1);
+			this->groupBoxSettings->Font = (gcnew System::Drawing::Font(L"MV Boli", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->groupBoxSettings->Location = System::Drawing::Point(277, 218);
+			this->groupBoxSettings->Name = L"groupBoxSettings";
+			this->groupBoxSettings->Size = System::Drawing::Size(222, 158);
+			this->groupBoxSettings->TabIndex = 9;
+			this->groupBoxSettings->TabStop = false;
+			this->groupBoxSettings->Text = L"Насторойки";
+			this->groupBoxSettings->Visible = false;
 			// 
-			// buttonSlow
+			// numericUpDown
 			// 
-			this->buttonSlow->Location = System::Drawing::Point(125, 37);
-			this->buttonSlow->Name = L"buttonSlow";
-			this->buttonSlow->Size = System::Drawing::Size(91, 23);
-			this->buttonSlow->TabIndex = 0;
-			this->buttonSlow->Text = L"Применить";
-			this->buttonSlow->UseVisualStyleBackColor = true;
-			this->buttonSlow->Click += gcnew System::EventHandler(this, &MyForm::buttonSlow_Click);
+			this->numericUpDown->Font = (gcnew System::Drawing::Font(L"Century Gothic", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->numericUpDown->Location = System::Drawing::Point(14, 73);
+			this->numericUpDown->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10000, 0, 0, 0 });
+			this->numericUpDown->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			this->numericUpDown->Name = L"numericUpDown";
+			this->numericUpDown->Size = System::Drawing::Size(184, 23);
+			this->numericUpDown->TabIndex = 7;
+			this->numericUpDown->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::Color::Honeydew;
-			this->ClientSize = System::Drawing::Size(547, 753);
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
+				static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->ClientSize = System::Drawing::Size(711, 809);
 			this->Controls->Add(this->groupBoxSettings);
-			this->Controls->Add(this->buttonNewGame);
 			this->Controls->Add(this->Leftbound);
 			this->Controls->Add(this->Rightbound);
 			this->Controls->Add(this->Bottombound);
@@ -374,6 +348,7 @@ namespace Snake {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Leftbound))->EndInit();
 			this->groupBoxSettings->ResumeLayout(false);
 			this->groupBoxSettings->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -386,7 +361,7 @@ namespace Snake {
 	private: bool die;//смерть
 	private: bool firstLaunch;//первый запуск
 	private: int step = 10;//шаг сетки
-	private: float updateInterval = 80;//интервал обновления
+	private: float updateInterval = 200;//интервал обновления
 	private: int score = 0;//счет 
 
 	private: void GeneratePositionFruit();
@@ -400,23 +375,17 @@ namespace Snake {
 private: System::Void новаяИграToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void паузаПродолжитьToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void выходToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
-private: System::Void скоростьToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void правилаToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
-	
-private: System::Void buttonSlow_Click(System::Object^ sender, System::EventArgs^ e);
-private: System::Void buttonMedium_Click(System::Object^ sender, System::EventArgs^ e);
-private: System::Void buttonFast_Click(System::Object^ sender, System::EventArgs^ e);
-private: System::Void buttonNewGame_Click(System::Object^ sender, System::EventArgs^ e);
+//	
+//private: System::Void buttonSlow_Click(System::Object^ sender, System::EventArgs^ e);
+//private: System::Void buttonMedium_Click(System::Object^ sender, System::EventArgs^ e);
+//private: System::Void buttonFast_Click(System::Object^ sender, System::EventArgs^ e);
+
 private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
 	
 private: void GameForm_Update(Object^ obgect, EventArgs^ e);
 
-
-
-
-//private: System::Void скоростьToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
-
-
-
+private: System::Void скоростьToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonApplySpeed_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }
