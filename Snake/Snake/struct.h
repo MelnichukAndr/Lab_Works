@@ -1,8 +1,8 @@
 #pragma once
-struct list
+struct table
 {
     int score;
-    list* next;
-    list* prev;
+    table* next;
+    table* prev;
 
 };

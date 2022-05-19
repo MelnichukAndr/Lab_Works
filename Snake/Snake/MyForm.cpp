@@ -5,6 +5,10 @@
 using namespace System;
 using namespace System::Windows::Forms;
 
+ table* head, * tail;
+ table* ptr, * previous;
+
+ FILE* f;
 
 void main(array<String^>^ args) {
 	Application::EnableVisualStyles();
@@ -106,19 +110,106 @@ void Snake::MyForm::EatYourself()
 
 void Snake::MyForm::GameOver()
 {
-	play = false;
+	
+ 	play = false;
 	die = true;
 
-	Game_over->Visible = true;
+	//открыть файл для записи	
+	if (launches==1) {
+		fopen_s(&f, "score.txt", "w");
+	}
+		
+	else
+		fopen_s(&f, "score.txt", "a");
+	fprintf(f, "%d ", score);
+	fclose(f);
 	
-	
-	
-	
-	
+ 	Game_over->Visible = true;
 }
+System::Void Snake::MyForm::сохранитьДанныеToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	int* arr = new int[launches];
+	//записать в массив данные из файла
+	fopen_s(&f, "score.txt", "r");
+	fseek(f, 0, SEEK_SET);
+	for (int i = 0; i < launches; i++) {
+		fscanf(f, "%d", &*(arr+i));
+	}
+	fclose(f);
+
+
+	
+	
+	
+		
+	
+	
+	 
+	if (groupBoxScores->Visible == false) {
+
+		play = false;
+		
+		groupBoxScores->Visible = true;
+		buttonHistory->Enabled = true;
+		
+		for (int i = 0; i < launches; i++)
+		{
+			//Создать лэйбл
+			System::Windows::Forms::Label^ label = gcnew System::Windows::Forms::Label();
+			label->Text = "Игра №" + (i + 1) + ": " + *(arr + i);
+			label->TabIndex = i + 1;
+			label->Location = System::Drawing::Point(400,  200+i*30);
+			label->BackColor = System::Drawing::Color::CornflowerBlue;
+			label->Size = System::Drawing::Size(75, 23); 
+			
+			
+			this->Controls->Add(label);
+		}
+		this->Controls->Add(groupBoxScores);
+	}
+	else {
+
+		play = true;
+		timer->Start();
+
+		groupBoxScores->Visible = false;
+		buttonHistory->Enabled = false;
+		
+		//удалить лэйблы
+		
+	}
+	
+	
+	
+	
+	
+	//MessageBox::Show("Сохранено");
+	delete[]arr;
+}
+System::Void Snake::MyForm::buttonHistory_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	buttonHistory->Enabled = false;
+	groupBoxScores->Visible = false;
+	//Удалить с формы лэйблы
+	/*for (int i = 0; i < launches; i++)
+	{
+		groupBoxScores->Controls->RemoveByKey("Игра №" + (i + 1) + ": ");
+	}*/
+	
+	play = true;
+	timer->Start();
+
+	return System::Void();
+}
+
+
+
+
+
 
 void Snake::MyForm::NewGame()
 {
+	++launches;
 	//если инициализация была, то удаляем объекты с формы
 	if (!firstLaunch)
 	{
@@ -171,7 +262,6 @@ void Snake::MyForm::NewGame()
 
 	//скрываем ненужные компоненты на форме
 	Game_over->Visible = false;
-	//MyFormMainFormMenu->Visible = false;
 }
 
 void Snake::MyForm::CheckBorders()
@@ -208,7 +298,8 @@ System::Void Snake::MyForm::правилаToolStripMenuItem_Click(System::Object^ sende
 		play = false;
 	}
 	MessageBox::Show("Правила игры:\n1. Для управления используйте стрелки\n2. Ешьте фрукты чтобы расти\n3. Нельзя есть себя и врезаться в стены.", "Правила игры!");
-
+	play = true;
+	timer->Start();
 	return System::Void();
 }
 
@@ -307,8 +398,13 @@ System::Void Snake::MyForm::скоростьToolStripMenuItem_Click(System::Object^ send
 
 System::Void Snake::MyForm::buttonApplySpeed_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	
+	int c =900;
 	updateInterval = Convert::ToSingle(numericUpDown->Value);
+	if (updateInterval >= 7) 
+		updateInterval = 150 - (updateInterval * 10);
+
+	else
+	updateInterval = c - (updateInterval * 100);
 	timer->Interval = updateInterval;
 
 	buttonApplySpeed->Enabled = false;
@@ -324,28 +420,4 @@ System::Void Snake::MyForm::buttonApplySpeed_Click(System::Object^ sender, Syste
 
 
 
-System::Void Snake::MyForm::сохранитьДанныеToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	FILE* f;
-	fopen_s(&f, "score.txt", "wt");
-	
-	fprintf(f, "%d", score);
-	fclose(f);
-}
-//System::Void Snake::MyForm::buttonApplyText_Click(System::Object^ sender, System::EventArgs^ e)
-//{
-//	
-//	String^ str = textBoxName->Text;
-//	
-//	
-//	
-//	buttonApplyText->Enabled = false;
-//	textBoxName->Enabled = false;
-//	PrintList->Visible = false;
-//
-//
-//	play = true;
-//	timer->Start();
-//
-//	return System::Void();
-//}
+
