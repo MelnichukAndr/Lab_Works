@@ -9,24 +9,13 @@ namespace Snake {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	/// <summary>
-	/// Ñâîäêà äëÿ MyForm
-	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
 		MyForm(void);
-		
-			//InitializeComponent();
-			//
-			//TODO: äîáàâüòå êîä êîíñòğóêòîğà
-			//
-		
 
 	protected:
-		/// <summary>
-		/// Îñâîáîäèòü âñå èñïîëüçóåìûå ğåñóğñû.
-		/// </summary>
+
 		~MyForm()
 		{
 			if (components)
@@ -34,79 +23,33 @@ namespace Snake {
 				delete components;
 			}
 		}
+		
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	protected:
 	private: System::Windows::Forms::ToolStripMenuItem^ ìåíşToolStripMenuItem;
-
-
 	private: System::Windows::Forms::ToolStripMenuItem^ ïğàâèëàToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ âûõîäToolStripMenuItem;
-
 	private: System::Windows::Forms::GroupBox^ GameData;
-
 	private: System::Windows::Forms::Label^ Score;
 	private: System::Windows::Forms::Timer^ timer;
 	private: System::Windows::Forms::Label^ Game_over;
-
 	private: System::Windows::Forms::ToolStripMenuItem^ íîâàÿÈãğàToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ ïàóçàÏğîäîëæèòüToolStripMenuItem;
 	private: System::Windows::Forms::PictureBox^ Topbound;
 	private: System::Windows::Forms::PictureBox^ Bottombound;
 	private: System::Windows::Forms::PictureBox^ Rightbound;
 	private: System::Windows::Forms::PictureBox^ Leftbound;
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::ToolStripMenuItem^ ñêîğîñòüToolStripMenuItem;
-	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ labelSpeed;
 	private: System::Windows::Forms::Button^ buttonApplySpeed;
 	private: System::Windows::Forms::GroupBox^ groupBoxSettings;
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown;
 	private: System::Windows::Forms::ToolStripMenuItem^ ñîõğàíèòüÄàííûåToolStripMenuItem;
-
-	private: System::Windows::Forms::GroupBox^ groupBoxScores;
-	private: System::Windows::Forms::Button^ buttonHistory;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	private: System::Windows::Forms::ListBox^ listBoxText;
 	private: System::ComponentModel::IContainer^ components;
-
-	private:
-		/// <summary>
-		/// Îáÿçàòåëüíàÿ ïåğåìåííàÿ êîíñòğóêòîğà.
-		/// </summary>
-
-
+		
 #pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Òğåáóåìûé ìåòîä äëÿ ïîääåğæêè êîíñòğóêòîğà — íå èçìåíÿéòå 
-		/// ñîäåğæèìîå ıòîãî ìåòîäà ñ ïîìîùüş ğåäàêòîğà êîäà.
-		/// </summary>
+		
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
@@ -127,12 +70,11 @@ namespace Snake {
 			this->Bottombound = (gcnew System::Windows::Forms::PictureBox());
 			this->Rightbound = (gcnew System::Windows::Forms::PictureBox());
 			this->Leftbound = (gcnew System::Windows::Forms::PictureBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->labelSpeed = (gcnew System::Windows::Forms::Label());
 			this->buttonApplySpeed = (gcnew System::Windows::Forms::Button());
 			this->groupBoxSettings = (gcnew System::Windows::Forms::GroupBox());
 			this->numericUpDown = (gcnew System::Windows::Forms::NumericUpDown());
-			this->groupBoxScores = (gcnew System::Windows::Forms::GroupBox());
-			this->buttonHistory = (gcnew System::Windows::Forms::Button());
+			this->listBoxText = (gcnew System::Windows::Forms::ListBox());
 			this->menuStrip1->SuspendLayout();
 			this->GameData->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Topbound))->BeginInit();
@@ -141,7 +83,6 @@ namespace Snake {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Leftbound))->BeginInit();
 			this->groupBoxSettings->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown))->BeginInit();
-			this->groupBoxScores->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// menuStrip1
@@ -153,7 +94,7 @@ namespace Snake {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(711, 30);
+			this->menuStrip1->Size = System::Drawing::Size(711, 28);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -164,7 +105,7 @@ namespace Snake {
 					this->ïàóçàÏğîäîëæèòüToolStripMenuItem
 			});
 			this->ìåíşToolStripMenuItem->Name = L"ìåíşToolStripMenuItem";
-			this->ìåíşToolStripMenuItem->Size = System::Drawing::Size(65, 26);
+			this->ìåíşToolStripMenuItem->Size = System::Drawing::Size(65, 24);
 			this->ìåíşToolStripMenuItem->Text = L"Ìåíş";
 			// 
 			// íîâàÿÈãğàToolStripMenuItem
@@ -184,28 +125,28 @@ namespace Snake {
 			// ïğàâèëàToolStripMenuItem
 			// 
 			this->ïğàâèëàToolStripMenuItem->Name = L"ïğàâèëàToolStripMenuItem";
-			this->ïğàâèëàToolStripMenuItem->Size = System::Drawing::Size(84, 26);
+			this->ïğàâèëàToolStripMenuItem->Size = System::Drawing::Size(84, 24);
 			this->ïğàâèëàToolStripMenuItem->Text = L"Ïğàâèëà";
 			this->ïğàâèëàToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::ïğàâèëàToolStripMenuItem_Click);
 			// 
 			// ñêîğîñòüToolStripMenuItem
 			// 
 			this->ñêîğîñòüToolStripMenuItem->Name = L"ñêîğîñòüToolStripMenuItem";
-			this->ñêîğîñòüToolStripMenuItem->Size = System::Drawing::Size(87, 26);
+			this->ñêîğîñòüToolStripMenuItem->Size = System::Drawing::Size(87, 24);
 			this->ñêîğîñòüToolStripMenuItem->Text = L"Ñêîğîñòü";
 			this->ñêîğîñòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::ñêîğîñòüToolStripMenuItem_Click);
 			// 
 			// ñîõğàíèòüÄàííûåToolStripMenuItem
 			// 
 			this->ñîõğàíèòüÄàííûåToolStripMenuItem->Name = L"ñîõğàíèòüÄàííûåToolStripMenuItem";
-			this->ñîõğàíèòüÄàííûåToolStripMenuItem->Size = System::Drawing::Size(154, 26);
-			this->ñîõğàíèòüÄàííûåToolStripMenuItem->Text = L"Ñîõğàíèòü äàííûå";
+			this->ñîõğàíèòüÄàííûåToolStripMenuItem->Size = System::Drawing::Size(82, 24);
+			this->ñîõğàíèòüÄàííûåToolStripMenuItem->Text = L"Èñòîğèÿ";
 			this->ñîõğàíèòüÄàííûåToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::ñîõğàíèòüÄàííûåToolStripMenuItem_Click);
 			// 
 			// âûõîäToolStripMenuItem
 			// 
 			this->âûõîäToolStripMenuItem->Name = L"âûõîäToolStripMenuItem";
-			this->âûõîäToolStripMenuItem->Size = System::Drawing::Size(67, 26);
+			this->âûõîäToolStripMenuItem->Size = System::Drawing::Size(67, 24);
 			this->âûõîäToolStripMenuItem->Text = L"Âûõîä";
 			this->âûõîäToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::âûõîäToolStripMenuItem_Click);
 			// 
@@ -288,17 +229,17 @@ namespace Snake {
 			this->Leftbound->TabIndex = 7;
 			this->Leftbound->TabStop = false;
 			// 
-			// label1
+			// labelSpeed
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->labelSpeed->AutoSize = true;
+			this->labelSpeed->Font = (gcnew System::Drawing::Font(L"Century Gothic", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->label1->Location = System::Drawing::Point(10, 38);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(206, 23);
-			this->label1->TabIndex = 3;
-			this->label1->Text = L"Âûáåğèòå ñêîğîñòü";
+			this->labelSpeed->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->labelSpeed->Location = System::Drawing::Point(10, 38);
+			this->labelSpeed->Name = L"labelSpeed";
+			this->labelSpeed->Size = System::Drawing::Size(206, 23);
+			this->labelSpeed->TabIndex = 3;
+			this->labelSpeed->Text = L"Âûáåğèòå ñêîğîñòü";
 			// 
 			// buttonApplySpeed
 			// 
@@ -317,7 +258,7 @@ namespace Snake {
 			this->groupBoxSettings->BackColor = System::Drawing::Color::CornflowerBlue;
 			this->groupBoxSettings->Controls->Add(this->numericUpDown);
 			this->groupBoxSettings->Controls->Add(this->buttonApplySpeed);
-			this->groupBoxSettings->Controls->Add(this->label1);
+			this->groupBoxSettings->Controls->Add(this->labelSpeed);
 			this->groupBoxSettings->Font = (gcnew System::Drawing::Font(L"Century Gothic", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->groupBoxSettings->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
@@ -341,31 +282,16 @@ namespace Snake {
 			this->numericUpDown->TabIndex = 7;
 			this->numericUpDown->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			// 
-			// groupBoxScores
+			// listBoxText
 			// 
-			this->groupBoxScores->BackColor = System::Drawing::Color::CornflowerBlue;
-			this->groupBoxScores->Controls->Add(this->buttonHistory);
-			this->groupBoxScores->Font = (gcnew System::Drawing::Font(L"Century Gothic", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->groupBoxScores->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->groupBoxScores->Location = System::Drawing::Point(481, 218);
-			this->groupBoxScores->Name = L"groupBoxScores";
-			this->groupBoxScores->Size = System::Drawing::Size(218, 158);
-			this->groupBoxScores->TabIndex = 8;
-			this->groupBoxScores->TabStop = false;
-			this->groupBoxScores->Text = L"Èñòîğèÿ";
-			this->groupBoxScores->Visible = false;
-			// 
-			// buttonHistory
-			// 
-			this->buttonHistory->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->buttonHistory->Location = System::Drawing::Point(128, 113);
-			this->buttonHistory->Name = L"buttonHistory";
-			this->buttonHistory->Size = System::Drawing::Size(75, 29);
-			this->buttonHistory->TabIndex = 10;
-			this->buttonHistory->Text = L"Îê";
-			this->buttonHistory->UseVisualStyleBackColor = true;
-			this->buttonHistory->Click += gcnew System::EventHandler(this, &MyForm::buttonHistory_Click);
+			this->listBoxText->BackColor = System::Drawing::Color::LightSteelBlue;
+			this->listBoxText->FormattingEnabled = true;
+			this->listBoxText->ItemHeight = 16;
+			this->listBoxText->Location = System::Drawing::Point(491, 218);
+			this->listBoxText->Name = L"listBoxText";
+			this->listBoxText->Size = System::Drawing::Size(187, 196);
+			this->listBoxText->TabIndex = 10;
+			this->listBoxText->Visible = false;
 			// 
 			// MyForm
 			// 
@@ -374,6 +300,7 @@ namespace Snake {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->ClientSize = System::Drawing::Size(711, 809);
+			this->Controls->Add(this->listBoxText);
 			this->Controls->Add(this->groupBoxSettings);
 			this->Controls->Add(this->Leftbound);
 			this->Controls->Add(this->Rightbound);
@@ -382,7 +309,6 @@ namespace Snake {
 			this->Controls->Add(this->Game_over);
 			this->Controls->Add(this->GameData);
 			this->Controls->Add(this->menuStrip1);
-			this->Controls->Add(this->groupBoxScores);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MainMenuStrip = this->menuStrip1;
 			this->MaximizeBox = false;
@@ -401,7 +327,6 @@ namespace Snake {
 			this->groupBoxSettings->ResumeLayout(false);
 			this->groupBoxSettings->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown))->EndInit();
-			this->groupBoxScores->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -416,8 +341,7 @@ namespace Snake {
 	private: int step = 10;//øàã ñåòêè
 	private: float updateInterval = 100;//èíòåğâàë îáíîâëåíèÿ
 	private: int score = 0;//ñ÷åò 
-	private: int launches = 0;
-	
+	private: int launches = 0; // çàïóñêè
 
 	private: void GeneratePositionFruit();
 	private: void Eating();
@@ -431,21 +355,11 @@ private: System::Void íîâàÿÈãğàToolStripMenuItem_Click(System::Object^ sender, S
 private: System::Void ïàóçàÏğîäîëæèòüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void âûõîäToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void ïğàâèëàToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
-//	
-//private: System::Void buttonSlow_Click(System::Object^ sender, System::EventArgs^ e);
-//private: System::Void buttonMedium_Click(System::Object^ sender, System::EventArgs^ e);
-//private: System::Void buttonFast_Click(System::Object^ sender, System::EventArgs^ e);
-
-private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
-	
-private: void GameForm_Update(Object^ obgect, EventArgs^ e);
-
 private: System::Void ñêîğîñòüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void buttonApplySpeed_Click(System::Object^ sender, System::EventArgs^ e);
-
 private: System::Void ñîõğàíèòüÄàííûåToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 
-
-private: System::Void buttonHistory_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);	
+private: void GameForm_Update(Object^ obgect, EventArgs^ e);
 };
 }

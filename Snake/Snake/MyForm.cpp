@@ -1,12 +1,8 @@
 #include "MyForm.h"
-#include "struct.h"
 #include <iostream>
 
 using namespace System;
 using namespace System::Windows::Forms;
-
- table* head, * tail;
- table* ptr, * previous;
 
  FILE* f;
 
@@ -16,13 +12,13 @@ void main(array<String^>^ args) {
 	Snake::MyForm form;
 	Application::Run(% form);
 }
-struct Vector2 {
+struct vector {
 	int X, Y;
 };
 
-Vector2 direction;//направление змейки
-Vector2 positionFruit;//позиция фрукта
-Vector2 gameArea;//игровая зона
+vector direction;//направление змейки
+vector positionFruit;//позиция фрукта
+vector gameArea;//игровая зона
 
 //конструктор формы
 Snake::MyForm::MyForm(void)
@@ -43,8 +39,8 @@ void Snake::MyForm::GeneratePositionFruit()
 {
 	//генерация случайной позиции фрукта
 	Random^ rand = gcnew Random();
-	positionFruit.X = rand->Next(100, (gameArea.X-100));//10 - смещение относительно боков формы
-	positionFruit.Y = rand->Next(150, (gameArea.Y-100));//120 - смещение верхней позиции относительно верха формы
+	positionFruit.X = rand->Next(100, (gameArea.X-100));
+	positionFruit.Y = rand->Next(150, (gameArea.Y-100));
 
 	//преобразуем значение чтобы было кратно шагу
 	int tempX = positionFruit.X % step;
@@ -104,20 +100,16 @@ void Snake::MyForm::EatYourself()
 		if (snake[0]->Location == snake[i]->Location)
 			GameOver();
 	}
-	
-	
 }
 
 void Snake::MyForm::GameOver()
 {
-	
  	play = false;
 	die = true;
 
 	//открыть файл для записи	
-	if (launches==1) {
+	if (launches==1) 
 		fopen_s(&f, "score.txt", "w");
-	}
 		
 	else
 		fopen_s(&f, "score.txt", "a");
@@ -126,86 +118,41 @@ void Snake::MyForm::GameOver()
 	
  	Game_over->Visible = true;
 }
+
 System::Void Snake::MyForm::сохранитьДанныеToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	int* arr = new int[launches];
 	//записать в массив данные из файла
 	fopen_s(&f, "score.txt", "r");
 	fseek(f, 0, SEEK_SET);
+	
 	for (int i = 0; i < launches; i++) {
 		fscanf(f, "%d", &*(arr+i));
 	}
 	fclose(f);
-
-
-	
-	
-	
-		
-	
-	
 	 
-	if (groupBoxScores->Visible == false) {
+	if (listBoxText->Visible == false) {
 
 		play = false;
-		
-		groupBoxScores->Visible = true;
-		buttonHistory->Enabled = true;
+		listBoxText->Visible = true;
 		
 		for (int i = 0; i < launches; i++)
 		{
-			//Создать лэйбл
-			System::Windows::Forms::Label^ label = gcnew System::Windows::Forms::Label();
-			label->Text = "Игра №" + (i + 1) + ": " + *(arr + i);
-			label->TabIndex = i + 1;
-			label->Location = System::Drawing::Point(400,  200+i*30);
-			label->BackColor = System::Drawing::Color::CornflowerBlue;
-			label->Size = System::Drawing::Size(75, 23); 
-			
-			
-			this->Controls->Add(label);
+			listBoxText->AutoSize;
+			listBoxText->Items->Add(i+1+") Игра: "+ * (arr + i)+" очков");
 		}
-		this->Controls->Add(groupBoxScores);
 	}
 	else {
-
 		play = true;
 		timer->Start();
-
-		groupBoxScores->Visible = false;
-		buttonHistory->Enabled = false;
 		
-		//удалить лэйблы
+		for (int i = launches; i > 0; i--)
+			listBoxText->Items->RemoveAt(i-1);
 		
+		listBoxText->Visible = false;
 	}
-	
-	
-	
-	
-	
-	//MessageBox::Show("Сохранено");
 	delete[]arr;
 }
-System::Void Snake::MyForm::buttonHistory_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	buttonHistory->Enabled = false;
-	groupBoxScores->Visible = false;
-	//Удалить с формы лэйблы
-	/*for (int i = 0; i < launches; i++)
-	{
-		groupBoxScores->Controls->RemoveByKey("Игра №" + (i + 1) + ": ");
-	}*/
-	
-	play = true;
-	timer->Start();
-
-	return System::Void();
-}
-
-
-
-
-
 
 void Snake::MyForm::NewGame()
 {
