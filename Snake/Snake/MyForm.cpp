@@ -118,40 +118,42 @@ void Snake::MyForm::GameOver()
 	
  	Game_over->Visible = true;
 }
-
-System::Void Snake::MyForm::сохранитьДанныеToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
-{
+void Snake::MyForm::SaveRecords() {
 	int* arr = new int[launches];
 	//записать в массив данные из файла
 	fopen_s(&f, "score.txt", "r");
 	fseek(f, 0, SEEK_SET);
-	
+
 	for (int i = 0; i < launches; i++) {
-		fscanf(f, "%d", &*(arr+i));
+		fscanf(f, "%d", &*(arr + i));
 	}
 	fclose(f);
-	 
+
 	if (listBoxText->Visible == false) {
 
 		play = false;
 		listBoxText->Visible = true;
-		
+
 		for (int i = 0; i < launches; i++)
 		{
 			listBoxText->AutoSize;
-			listBoxText->Items->Add(i+1+") Игра: "+ * (arr + i)+" очков");
+			listBoxText->Items->Add(i + 1 + ") Игра: " + *(arr + i) + " очков");
 		}
 	}
 	else {
 		play = true;
 		timer->Start();
-		
+
 		for (int i = launches; i > 0; i--)
-			listBoxText->Items->RemoveAt(i-1);
-		
+			listBoxText->Items->RemoveAt(i - 1);
+
 		listBoxText->Visible = false;
 	}
 	delete[]arr;
+}
+System::Void Snake::MyForm::сохранитьДанныеToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	SaveRecords();
 }
 
 void Snake::MyForm::NewGame()
@@ -247,7 +249,6 @@ System::Void Snake::MyForm::правилаToolStripMenuItem_Click(System::Object^ sende
 	MessageBox::Show("Правила игры:\n1. Для управления используйте стрелки\n2. Ешьте фрукты чтобы расти\n3. Нельзя есть себя и врезаться в стены.", "Правила игры!");
 	play = true;
 	timer->Start();
-	return System::Void();
 }
 
 System::Void Snake::MyForm::выходToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
@@ -302,7 +303,6 @@ System::Void Snake::MyForm::MyForm_KeyDown(System::Object^ sender, System::Windo
 			snake[0]->SizeMode = PictureBoxSizeMode::StretchImage;
 		}
 	}
-	return System::Void();
 }
 
 //обновление игры
@@ -326,17 +326,17 @@ System::Void Snake::MyForm::скоростьToolStripMenuItem_Click(System::Object^ send
 {
 	if (groupBoxSettings->Visible == false) {
 		
-		play = false;
-
+		play = false; //пауза
+		//Активация кнопок и поля для ввода
 		buttonApplySpeed->Enabled = true;
 		numericUpDown->Enabled = true;
 		groupBoxSettings->Visible = true;
 	}
 	else {
-		
+		//Продолжить
 		play = true;
 		timer->Start();
-
+		//Деактивация кнопок и полей для ввода
 		buttonApplySpeed->Enabled = false;
 		numericUpDown->Enabled = false;
 		groupBoxSettings->Visible = false;
@@ -346,25 +346,18 @@ System::Void Snake::MyForm::скоростьToolStripMenuItem_Click(System::Object^ send
 System::Void Snake::MyForm::buttonApplySpeed_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	int c =900;
-	updateInterval = Convert::ToSingle(numericUpDown->Value);
-	if (updateInterval >= 7) 
+	updateInterval = Convert::ToSingle(numericUpDown->Value);//считывание из numericUpDown
+	if (updateInterval >= 7) //множитель свыше 7 скорости
 		updateInterval = 150 - (updateInterval * 10);
 
 	else
-	updateInterval = c - (updateInterval * 100);
+	updateInterval = c - (updateInterval * 100); // перевод значения из миллисекунд
 	timer->Interval = updateInterval;
-
+	//Деактивация кнопок и полей для ввода
 	buttonApplySpeed->Enabled = false;
 	numericUpDown->Enabled = false;
 	groupBoxSettings->Visible = false;
-
-	
+	//Продолжить
 	play = true;
 	timer->Start();
-
-	return System::Void();
 }
-
-
-
-

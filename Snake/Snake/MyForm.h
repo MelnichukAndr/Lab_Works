@@ -350,6 +350,7 @@ namespace Snake {
 	private: void GameOver();
 	private: void NewGame();
 	private: void CheckBorders();
+	private: void SaveRecords();
 		
 private: System::Void íîâàÿÈãğàToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void ïàóçàÏğîäîëæèòüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
