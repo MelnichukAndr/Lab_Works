@@ -38,7 +38,7 @@ int main() {
 	table FirstObject[N];
 	for (int i = 0; i < N; i++) {
 		system("cls");
-		cout << "Enter Thermal conductivity coefficients of materials, for exit press 'esc'\n";
+		cout << "Enter Thermal conductivity coefficients of materials\n";
 		cin >> name;
 		cin >> type;
 		cin >> humidity;
