@@ -76,18 +76,27 @@ int main()
 	int a, b, c;
 	do
 	{
+		system("cls");
 		cout << "Enter a, b, c\n";
 		cin >> a >> b >> c;
-		system("cls");
-		cout << "Before swap:\na = " << a << " b = " << b << " c = " << c << endl;
-		value.Swap(&a, &b, &c);
-		cout << "After swap by link:\na = " << a << " b = " << b << " c = " << c << endl;
-		cout << "\n";
-		cout << "Before swap:\na = " << a << " b = " << b << " c = " << c << endl;
-		value.Swap(a, b, c);
-		cout << "After swap by pointers:\na = " << a << " b = " << b << " c = " << c << endl;
-		system("pause");
-		system("cls");
+		if (cin.fail()) {
+			cout << "Eror, try one more time\n";
+			cin.clear();
+			cin.ignore(32767, '\n');
+			system("pause");
+			system("cls");
+			continue;
+		}
+			system("cls");
+			cout << "Before swap:\na = " << a << " b = " << b << " c = " << c << endl;
+			value.Swap(&a, &b, &c);
+			cout << "After swap by link:\na = " << a << " b = " << b << " c = " << c << endl;
+			cout << "Before swap:\na = " << a << " b = " << b << " c = " << c << endl;
+			value.Swap(a, b, c);
+			cout << "After swap by pointers:\na = " << a << " b = " << b << " c = " << c << endl;
+			cout << "\n";
+		cout << "Press any key to continue . . .\n";
+		puts("Press 'esc' to exit . . .");
 	} while (_getch() != 27);
 }
 

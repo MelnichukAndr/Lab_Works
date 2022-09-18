@@ -1,71 +1,8 @@
-﻿#include <iostream>
-using namespace std;
-class dog {
-	string name;
-	int weight;
-	int age;
-public:
-	dog() {
-		name = "No name dog";
-		weight = 0;
-		age = 0;
-	}
-	dog(string name, int weight, int age) {
-		this->name = name;
-		this->weight = weight;
-		this->age = age;
-	}
-	dog(const dog& other) {
-		this->name = other.name;
-		this->weight = other.weight;
-		this->age = other.age;
-	}
-	void SetDogsMerit(string name, int weight, int age) {
-		this->name = name;
-		this->weight = weight;
-		this->age = age;
-	}
-	void GetDogsMerit() {
-		cout << "Dog`s name >\t" << this->name << "\nDog`s weight >\t" << this->weight << "\nDog`s age >\t" << this->age << endl;
-	}
-};
-class master {
-	string name;
-	const int id =6597;
-	dog dogs;
-	static int DogsCount;
-public:
-	master() {
-		this->name = "No name person";
-		this->dogs = dog();
-		++DogsCount;
-	}
-	master(string name, dog dogs) {
-		this->name = name;
-		this->dogs = dogs;
-		++DogsCount;
-	}
-	master(const master& other) {
-		this->name = other.name;
-		this->dogs = other.dogs;
-		++DogsCount;
-	}
-	void SetMastersMerit(string name, dog dogs) {
-		this->name = name;
-		this->dogs = dogs;
-	}
-	void GetMastersMerit() {
-		cout << "ID:" << this->id << "\nMaster`s name >\t" << this->name << "\n\n";
-	}
-	static int GetMastersCount();
-};
-int master::DogsCount = 0;
-int master::GetMastersCount() {
-	return DogsCount;
-}
+﻿#include "Header.h"
+
 int main()
 {
-	master FirstMaster;
+	master FirstMaster("Dmitriy");
 	master SecondMaster;
 
 	dog* FirstMasterDogs = new dog[2];
@@ -90,4 +27,59 @@ int main()
 	cout << "\n\n";
 
 	cout << "All club has: " << FirstMaster.GetMastersCount() <<" members" << endl;
+	cout << "All club has: " << FirstMasterDogs[0].GetDogsCount() << " dogs" << endl;
+
+	master* arr;
+	do {
+		cout << "\n\nAdd the new master? (y/n)\n\n";
+		char a;
+		cin >> a;
+		if (a == 'y') {
+			int master_count, dog_count, d_weight, d_age ;
+			/*cout << "How many masters create?\n\n";
+			cin >> master_count;*/
+			 int i = 0;
+			master* arr = new master ;
+			
+			cout << "How many dogs master have?\n";
+			cin >> dog_count;
+			dog* dogs = new dog[dog_count];
+			
+				cout << "Insert master name: ";
+				string m_name, d_name;
+				cin >> m_name;
+				
+				for (int j = 0; j < dog_count; j++){
+					
+					cout << "Insert dog`s name, weight, age: \n";
+					cin >> d_name >> d_weight >> d_age;
+					dogs[j].SetDogsMerit(d_name, d_weight, d_age);
+					arr[i].SetMastersMerit(m_name, *dogs);
+					
+					/*arr[i].GetMastersMerit();
+					dogs[j].GetDogsMerit();*/
+					
+				}
+				
+				
+				
+					arr[i].GetMastersMerit();
+					for (int j = 0; j < dog_count; j++) {
+						dogs[j].GetDogsMerit();
+						cout << "\n";
+					}
+			
+				dog a;
+				cout << "All club has: " << FirstMaster.GetMastersCount() << " members" << endl;
+				cout << "All club has: " << a.GetDogsCount() << " dogs" << endl;
+				
+		}
+
+		if (a == 'n') {
+			cout << "Press any key to continue . . .\n";
+			puts("Press 'esc' to exit . . .");
+		}
+	} while (_getch() != 27);
+	cout << "\n\nAdd the new master? (y/n)\n\n";
+
 }

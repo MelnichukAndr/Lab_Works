@@ -1,37 +1,66 @@
-﻿#include <iostream>
-#define pi 3.1415
-using namespace std;
-class figure {
-    int a, b, c;
-public:
-    figure(int a = 5, int b = 4, int c = 3) {
-        this->a = a;
-        this->b = b;
-        this->c = c;
-    }
-    float CalculateArea() {
-        if (b == 0 && c == 0) {
-            float CircleArea = pi * pow(this->a, 2);
-            return CircleArea;
-        }
-        else if (a == 0 && c == 0) {
-            float CircleArea = pi * pow(this->b, 2);
-            return CircleArea;
-        }
-        else if (a == 0 && b == 0) {
-            float CircleArea = pi * pow(this->c, 2);
-            return CircleArea;
-        }
-        else {
-            float p = (a + b + c) / 2;
-            float TriangleArea = sqrt(p * (p - this->a)*(p - this->b)*(p - this->c));
-            return TriangleArea;
-        }
-    }
-};
+﻿#include "Header.h"
 int main()
 {
-    figure Figure;
-    cout << "Area = " << Figure.CalculateArea() << endl;
-    system("pause");
+	int a, b, c, k;
+    do {
+		system("cls");
+		
+		cout << "Calculate area: 1 - circle, 2 - triangle\n\n";
+		cin >> k;
+		
+		if (cin.fail()) {
+			cout << "Eror, try one more time\n";
+			cin.clear();
+			cin.ignore(32767, '\n');
+			system("pause");
+			system("cls");
+			continue;
+		}
+		if (k == 1) {
+			cout << "Enter a\n";
+			cin >> a;
+			if (cin.fail()) {
+				cout << "Eror, try one more time\n";
+				cin.clear();
+				cin.ignore(32767, '\n');
+				system("pause");
+				system("cls");
+				continue;
+			}
+			if (a > 0) {
+				figure ob1(a);
+				cout << "Area: "<< ob1.CalculateArea() << "\n";
+			}
+			else{
+				cout << "Circle with this parameter doesn`t exist";
+				continue;
+			}
+		}
+		if (k == 2) {
+			cout << "Enter a, b, c\n";
+			cin >> a >> b >> c;
+			if (cin.fail()) {
+				cout << "Eror, try one more time\n";
+				cin.clear();
+				cin.ignore(32767, '\n');
+				system("pause");
+				system("cls");
+				continue;
+			}
+			if ((a + b) > c) {
+				if ((a + c) > b) {
+					if ((b + c) > a) {
+						figure ob1(a, b, c);
+						cout <<"Area:" << ob1.CalculateArea() << "\n";
+					}
+				}
+			}
+			else {
+				cout << "Triangle with these parameters doesn`t exist";
+				continue;
+			}
+		}
+		cout << "Press any key to continue . . .\n";
+		puts("Press 'esc' to exit . . .");
+	} while (_getch() != 27);
 }

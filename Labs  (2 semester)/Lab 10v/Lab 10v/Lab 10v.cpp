@@ -1,47 +1,55 @@
-﻿#include <iostream>
-using namespace std;
-
-class SUM {
-	int x, y, sum;
-public:
-	SUM() {
-		x = 0;
-		y = 0;
-		sum = 0;
-	};
-	SUM(int x, int y) {
-		this->x = x;
-		this->y = y;
-		this->sum = 0;
-	};
-	void setX(int x) {
-		this->x = x;
-	};
-	void setY(int y) {
-		this->y = y;
-	};
-	
-	void PrintAllValues() {
-		cout << "x   = " << x <<"\n" << "y   = " << y<<"\n" << "sum = " << sum << "\n\n";
-	}
-	void CalculateSum() {
-		sum = x + y;
-		cout << "sum = " << sum << "\n\n";
-	}
-	
-};
+﻿#include "Header.h"
+#include <conio.h>
 int main()
 {
+
 	cout << "default constructor with setters:\n\n";
 	SUM FirstValue;
-	FirstValue.setX(2);
-	FirstValue.setY(3);
-	FirstValue.PrintAllValues();
 	FirstValue.CalculateSum();
-	
+	FirstValue.PrintAllValues();
+	int a, b;
+	do{
+	//system("cls");
+	cout << "Enter 2 numbers: ";
+	cin >> a>> b;
+	if (cin.fail()) {
+
+		cout << "Eror, try one more time\n";
+		cin.clear();
+		cin.ignore(32767, '\n');
+		system("pause");
+		system("cls");
+		continue;
+	}
+	//FirstValue.CalculateSum();
+	FirstValue.setX(a);
+	FirstValue.setY(b);
+	FirstValue.CalculateSum();
+	FirstValue.PrintAllValues();
+
 	cout << "constructor with parameters:\n\n";
-	SUM SecondValue(3, 4);
+	cout << "Enter 2 numbers: ";
+	cin >> a >> b;
+	if (cin.fail()) {
+
+		cout << "Eror, try one more time\n";
+		cin.clear();
+		cin.ignore(32767, '\n');
+		system("pause");
+		system("cls");
+		continue;
+	}
+	SUM SecondValue(a, b);
 	SUM* pointer = &SecondValue;
-	pointer->PrintAllValues();
+
 	pointer->CalculateSum();
+	pointer->PrintAllValues();
+	cout << "Press any key to continue . . .\n";
+	puts("Press 'esc' to exit . . .");
+	SUM &ref = SecondValue;
+	ref.CalculateSum();
+	ref.PrintAllValues();
+	
+	} while (_getch() != 27);
+
 }
