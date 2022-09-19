@@ -16,20 +16,16 @@ public:
 	void GetDogsMerit();
 	static int GetDogsCount();
 };
-//int dog::DogsCount = 0;
-//
-//int dog::GetDogsCount() {
-//	return DogsCount;
-//}
+
 class master {
 	string name;
 	const int id = 6597;
-	dog dogs;
 	static int MasterCount;
 public:
-	master(const string& name = "No name person", const dog& dogs = dog());
+	dog *dogs;
+	master(dog* dogs = new dog(), const string& name = "No name person");
 	master(const master& other);
-	void SetMastersMerit(const string& name, const dog& dogs);
+	void SetMastersMerit(const string& name, dog* dogs);
 	void GetMastersMerit();
 	static int GetMastersCount();
 };

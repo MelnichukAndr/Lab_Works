@@ -1,5 +1,5 @@
 #include "Header.h"
-master::master(const string& name, const dog& dogs) {
+master::master( dog* dogs, const string& name) {
 	this->name = name;
 	this->dogs = dogs;
 	++MasterCount;
@@ -9,7 +9,7 @@ master::master(const master& other) {
 	this->dogs = other.dogs;
 	++MasterCount;
 }
-void master::SetMastersMerit(const string& name, const dog& dogs) {
+void master::SetMastersMerit(const string& name, dog* dogs) {
 	this->name = name;
 	this->dogs = dogs;
 }
