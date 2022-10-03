@@ -15,9 +15,13 @@ void complex::SetR(const double& r) {
 void complex::SetM(const double& m) {
 	this->m = m;
 }
-void complex::Sum(const complex& other) {
-	AddR(other.r);
-	AddM(other.m);
+complex complex::Sum(const complex& other) {
+	/*AddR(other.r);
+	AddM(other.m);*/
+	complex A;
+	A.r = this->r + other.r;
+	A.m = this->m + other.m;
+	return A;
 }
 void complex::print() {
 	cout << r << " + " << m << "i" << endl;

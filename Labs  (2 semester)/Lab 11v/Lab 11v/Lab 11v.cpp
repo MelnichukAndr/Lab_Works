@@ -45,7 +45,9 @@ int main()
 			cout << "Eror, try one more time\n";
 			continue;
 		}
-		FirstComplex.Sum(SecondComplex);
+		
+
+		(FirstComplex.Sum(SecondComplex)).print();
 		FirstComplex.print();
 		cout << "Press any key to continue . . .\n";
 		puts("Press 'esc' to exit . . .");

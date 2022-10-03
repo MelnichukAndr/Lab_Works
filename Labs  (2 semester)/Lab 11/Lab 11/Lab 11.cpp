@@ -19,7 +19,7 @@ void table::Set(string name, char type, string humidity, float count) {
 	this->count = count;
 }
 void table::Get(string& name, char& type, string& humidity, float& count) {
-	name = this->name;
+	name = this->name + "111";
 	type = this->type;
 	humidity= this->humidity;
 	count = this->count;
