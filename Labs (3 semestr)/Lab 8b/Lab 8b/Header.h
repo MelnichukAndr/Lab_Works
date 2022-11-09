@@ -15,7 +15,7 @@ public:
     void average_arr();
     void print();
     T get_ind() { return ind; }
-    Array operator[](int idx)
+    T& operator[](int idx)
 
 
     ~Array()

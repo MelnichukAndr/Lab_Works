@@ -31,7 +31,7 @@ template <class T> void Array<T>::print() {
 	}
 }
 
-template <class T> Array<T>::operator[](int idx) {
+template <class T> T& Array<T>::operator[](int idx) {
 	try {
 		if (ind < 0 || i > ind)
 			throw exception("Error []");
