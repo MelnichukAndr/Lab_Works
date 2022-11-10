@@ -4,15 +4,16 @@ template Array <int>;
 template <class T> Array<T>::Array(const T& ind, const T& size) {
 	try {
 		this->size = size;
-		if (ind < size)
-			this->ind = ind;
-		else
-			throw exception("Error constructor");
-
 		this->arr = new T[size];
+		if (ind < size && ind >= 0)
+			this->ind = ind;
+		else {
+			this->ind = 0;
+			throw exception("Error constructor");
+		}
 	}
 	catch (const exception ex) {
-		cout << ex.what();
+		cout << ex.what()<<"\n";
 		
 	}
 }
@@ -58,6 +59,22 @@ template <class T> T& Array<T>::operator[](const int& idx) {
 		}
 	}
 	catch (const exception ex) {
-		cout << ex.what();
+		cout << ex.what()<<"\n";
+	}
+}
+template <class T> T& Array<T>::operator()(const T& ind, const T& size) {
+	try {
+		this->size = size;
+		this->arr = new T[size];
+		if (ind < size && ind > 0)
+			this->ind = ind;
+		else {
+			this->ind = 0;
+			throw exception("Error constructor");
+		}
+	}
+	catch (const exception ex) {
+		cout << ex.what() << "\n";
+
 	}
 }

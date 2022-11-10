@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <Windows.h>
 #include <time.h>
 using namespace std;
 template <typename T>
@@ -16,6 +17,7 @@ public:
     void print();
     T get_ind() { return ind; }
     T& operator[](const int& idx);
+    T& operator()(const T& ind = 0, const T& size = 100);
 
 
     ~Array()
