@@ -1,19 +1,29 @@
 #include "Header.h"
 template Array <int>;
 
-template <class T> Array<T>::Array(const T ind, const T size) {
-	this->size = size;
-	this->ind = ind;
-	this->arr = new T[size];
+template <class T> Array<T>::Array(const T& ind, const T& size) {
+	try {
+		this->size = size;
+		if (ind < size)
+			this->ind = ind;
+		else
+			throw exception("Error constructor");
+
+		this->arr = new T[size];
+	}
+	catch (const exception ex) {
+		cout << ex.what();
+		
+	}
 }
 
-template <class T> void Array<T>::fill_arr(const T n, const T idx) {
+template <class T> void Array<T>::fill_arr(const T& n, const T& idx) {
 	this->arr[idx] = n;
 }
 template <class T> void Array<T>::sum_arr() {
 	int sum = 0;
 	for (int i = 0; i < ind; i++) {
-		sum+=this->arr[i];
+		sum += this->arr[i];
 	}
 	cout << "sum = " << sum << "\n";
 }
@@ -22,7 +32,7 @@ template <class T> void Array<T>::average_arr() {
 	for (int i = 0; i < ind; i++) {
 		sum += this->arr[i];
 	}
-	cout << "average = " << sum/ind << "\n";
+	cout << "average = " << sum / ind << "\n";
 }
 
 template <class T> void Array<T>::print() {
@@ -31,11 +41,23 @@ template <class T> void Array<T>::print() {
 	}
 }
 
-template <class T> T& Array<T>::operator[](int idx) {
+template <class T> T& Array<T>::operator[](const int& idx) {
 	try {
-		if (ind < 0 || i > ind)
+		if (idx >= ind || idx < 0)
 			throw exception("Error []");
-		else
-			return mas[i];
+		else {
+			T max = *arr;
+			T pos = 0;
+			for (int i = 0; i < idx; i++) {
+				if (max < arr[i+1]) {
+					max = arr[i+1];
+					pos = i+1;
+				}
+			}
+			return arr[pos];
+		}
+	}
+	catch (const exception ex) {
+		cout << ex.what();
 	}
 }
